@@ -1,19 +1,47 @@
-@use '../abstracts/variables';
+@use '../abstracts/variables' as v;
+
+.btn {
+    text-decoration: none; 
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: v.$transition;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+
+    i {
+        transition: transform 0.3s ease;
+    }
+
+    &:hover i {
+        transform: translateX(5px);
+    }
+}
 
 .btn-primary {
-    position: relative;
-    background: variables.$gradient;
-    border: none;
-    z-index: 1;
-    overflow: hidden;
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        transition: 0.5s;
+    background: v.$gradient;
+    color: #000 !important;
+    box-shadow: 0 0 15px rgba(v.$primary, 0.4);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(v.$primary, 0.6);
+        filter: brightness(1.1);
     }
-    &:hover::after { left: 100%; }
-    &:hover { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); transform: scale(1.05); }
+}
+
+.btn-outline {
+    border: 2px solid v.$primary;
+    color: v.$primary !important;
+    background: transparent;
+
+    &:hover {
+        background: rgba(v.$primary, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(v.$primary, 0.3);
+    }
 }
