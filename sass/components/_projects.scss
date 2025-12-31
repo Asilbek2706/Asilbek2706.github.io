@@ -7,13 +7,21 @@
     .section-title {
         margin-bottom: 60px;
         text-align: center;
+        font-size: 3rem;
+        color: v.$text-main;
+        
+        .highlight {
+            background: v.$gradient;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px; // Cardlar orasidagi masofa
+    gap: 40px;
 }
 
 .project-card {
@@ -29,7 +37,6 @@
     position: relative;
     overflow: hidden;
 
-    // Hover bo'lganda orqa fonda paydo bo'ladigan neon nur
     &::after {
         content: '';
         position: absolute;
@@ -38,6 +45,7 @@
         background: radial-gradient(circle, rgba(v.$primary, 0.05) 0%, transparent 70%);
         opacity: 0;
         transition: 0.5s ease;
+        z-index: 0;
     }
 
     &:hover {
@@ -54,50 +62,20 @@
 
         .btn-glow {
             background: v.$primary;
-            color: v.$bg-deep;
+            color: v.$bg-deep !important;
             box-shadow: 0 0 20px v.$primary;
         }
     }
 
-    .project-icon {
-        i {
-            font-size: 3rem;
-            color: v.$text-dim;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .project-icon, .project-info, .project-tags, .btn-glow {
+        position: relative;
+        z-index: 1; // Neon nur matnni to'sib qo'ymasligi uchun
     }
 
-    .project-info {
-        h3 {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            color: v.$text-main;
-        }
-
-        p {
-            color: v.$text-dim;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-    }
-
-    .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 30px;
-
-        span {
-            padding: 5px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid v.$glass-border;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: v.$primary;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+    .project-icon i {
+        font-size: 3rem;
+        color: v.$text-dim;
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .btn-glow {
@@ -108,22 +86,9 @@
         color: v.$primary;
         text-decoration: none;
         font-weight: 600;
-        font-size: 0.9rem;
         display: flex;
         align-items: center;
         gap: 10px;
         transition: 0.3s ease;
-
-        i { font-size: 1.1rem; }
-    }
-}
-
-// Mobil variant
-@media (max-width: 576px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    .project-card {
-        padding: 30px;
     }
 }

@@ -250,10 +250,10 @@ canvas#star-canvas {
     text-align: center;
     gap: 50px;
   }
-  .hero .hero-btns {
+  .hero .hero-content .hero-btns {
     justify-content: center;
   }
-  .hero .image-border {
+  .hero .hero-image-container .image-border {
     width: 300px;
     height: 300px;
   }
@@ -468,34 +468,52 @@ canvas#star-canvas {
     text-align: center;
   }
 }
-.btn-primary {
-  position: relative;
-  background: linear-gradient(135deg, #00f2fe, #7000ff);
+.btn {
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  cursor: pointer;
   border: none;
-  z-index: 1;
-  overflow: hidden;
 }
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: 0.5s;
+.btn i {
+  transition: transform 0.3s ease;
 }
-.btn-primary:hover::after {
-  left: 100%;
+.btn:hover i {
+  transform: translateX(5px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00f2fe, #7000ff);
+  color: #000 !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
-  transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+  filter: brightness(1.1);
+}
+
+.btn-outline {
+  border: 2px solid #00f2fe;
+  color: #00f2fe !important;
+  background: transparent;
+}
+.btn-outline:hover {
+  background: rgba(0, 242, 254, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
 }
 
 .skills {
   position: relative;
   z-index: 1;
+  padding: 100px 0;
 }
 .skills .section-title {
   text-align: center;
@@ -546,11 +564,13 @@ canvas#star-canvas {
   display: block;
   margin-bottom: 20px;
   filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .skill-card h3 {
   font-size: 1.5rem;
   margin-bottom: 25px;
   letter-spacing: 1px;
+  color: #ffffff;
 }
 .skill-card .progress-bar {
   width: 100%;
@@ -599,11 +619,93 @@ canvas#star-canvas {
     transform: translateX(100%);
   }
 }
-@media (max-width: 768px) {
-  .skill-card {
-    padding: 30px;
-  }
+.projects {
+  padding: 100px 0;
 }
+.projects .section-title {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 3rem;
+  color: #ffffff;
+}
+.projects .section-title .highlight {
+  background: linear-gradient(135deg, #00f2fe, #7000ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: 0.5s ease;
+  z-index: 0;
+}
+.project-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 242, 254, 0.1);
+}
+.project-card:hover::after {
+  opacity: 1;
+}
+.project-card:hover .project-icon i {
+  transform: scale(1.2) rotate(10deg);
+  color: #00f2fe;
+}
+.project-card:hover .btn-glow {
+  background: #00f2fe;
+  color: #020205 !important;
+  box-shadow: 0 0 20px #00f2fe;
+}
+.project-card .project-icon, .project-card .project-info, .project-card .project-tags, .project-card .btn-glow {
+  position: relative;
+  z-index: 1;
+}
+.project-card .project-icon i {
+  font-size: 3rem;
+  color: #b0b0b0;
+  transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.project-card .btn-glow {
+  align-self: flex-start;
+  padding: 12px 25px;
+  border: 1px solid #00f2fe;
+  border-radius: 12px;
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+
 .cursor-follower {
   position: fixed;
   width: 20px;
