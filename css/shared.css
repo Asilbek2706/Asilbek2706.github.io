@@ -27,7 +27,6 @@ body.no-scroll {
     overflow: hidden;
 }
 
-/* --- NAVBAR CORE --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -38,14 +37,13 @@ body.no-scroll {
     background: rgba(2, 2, 5, 0.85);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .navbar.scrolled {
     padding: 0.8rem 0;
     background: rgba(2, 2, 5, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 .navbar .header-container {
     display: flex;
     justify-content: space-between;
@@ -55,34 +53,156 @@ body.no-scroll {
     padding: 0 25px;
     width: 100%;
 }
-
-/* --- LOGO STYLES --- */
-.navbar .logo a, .footer .logo {
+.navbar {
+    /* --- LOGO --- */
+}
+.navbar .logo a {
     font-size: 1.5rem;
     font-weight: 800;
     color: #ffffff;
     text-decoration: none;
     letter-spacing: 1px;
 }
-
-.navbar .logo a span, .footer .logo span {
-    color: var(--accent-cyan);
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+.navbar .logo a span {
+    color: #00f2fe;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
-
-/* --- NAVIGATION LINKS & HOVERS --- */
+@media (max-width: 768px) {
+    .navbar .logo a {
+        font-size: 1.3rem;
+    }
+}
+.navbar {
+    /* --- NAVIGATION LINKS --- */
+}
 .navbar .nav-link {
-    color: var(--text-gray);
+    color: #b0b0b0;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
     position: relative;
-    transition: 0.4s ease;
+    transition: 0.3s ease;
 }
-
 .navbar .nav-link:hover, .navbar .nav-link.active {
     color: #ffffff;
 }
+@media (min-width: 992px) {
+    .navbar .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #00f2fe, #7000ff);
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
+        width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .navbar .nav-menu {
+        display: flex !important;
+    }
+    .navbar .nav-menu ul {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+.navbar {
+    /* --- MOBILE COLLAPSE (Full Screen Menu) --- */
+}
+@media (max-width: 768px) {
+    .navbar .navbar-collapse.show {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(2, 2, 5, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 1100;
+    }
+    .navbar .navbar-collapse.show .navbar-nav {
+        flex-direction: column !important;
+        gap: 25px !important;
+        text-align: center;
+    }
+    .navbar .navbar-collapse.show .navbar-nav .nav-link {
+        font-size: 1.5rem;
+    }
+    .navbar .navbar-collapse.show .mobile-socials {
+        display: flex !important;
+        margin-top: 40px;
+        gap: 25px;
+    }
+    .navbar .navbar-collapse.show .mobile-socials a {
+        font-size: 1.8rem;
+        color: #00f2fe;
+    }
+}
+
+/* --- SOCIALS (Header & Global) --- */
+.header-socials a {
+    color: #ffffff;
+    font-size: 1.4rem;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    text-decoration: none;
+}
+.header-socials a:hover {
+    color: #00f2fe;
+    transform: translateY(-5px) scale(1.1);
+    filter: drop-shadow(0 0 8px #00f2fe);
+}
+
+/* --- TOGGLER (Burger Menu) --- */
+.custom-toggler {
+    width: 45px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    z-index: 1101;
+}
+@media (max-width: 768px) {
+    .custom-toggler {
+        display: flex;
+    }
+}
+.custom-toggler .toggler-icon {
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+.custom-toggler.active .toggler-icon:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.custom-toggler.active .toggler-icon:nth-child(2) {
+    opacity: 0;
+}
+.custom-toggler.active .toggler-icon:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 
 .header-socials a {
     color: #ffffff;
