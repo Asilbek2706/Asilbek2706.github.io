@@ -53,9 +53,7 @@ body.no-scroll {
     padding: 0 25px;
     width: 100%;
 }
-.navbar {
-    /* --- LOGO --- */
-}
+
 .navbar .logo a {
     font-size: 1.5rem;
     font-weight: 800;
@@ -203,112 +201,6 @@ body.no-scroll {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-
-.header-socials a {
-    color: #ffffff;
-    font-size: 1.5rem;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: inline-block;
-    text-decoration: none;
-}
-
-.header-socials a:hover {
-    color: var(--accent-cyan);
-    transform: translateY(-5px) scale(1.1);
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
-}
-
-/* --- TOGGLER --- */
-.custom-toggler {
-    width: 45px;
-    height: 38px;
-    padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    display: none;
-}
-
-.custom-toggler .toggler-icon {
-    width: 22px;
-    height: 2px;
-    background-color: #ffffff;
-    display: block;
-    transition: 0.3s;
-    border-radius: 2px;
-}
-
-/* --- RESPONSIVE MEDIA QUERIES --- */
-
-/* 1. Telefonlar (max-width: 768px) */
-@media (max-width: 768px) {
-    .navbar .logo a { font-size: 1.3rem; }
-
-    /* Footer Mobil: Logo tepada, socials pastda */
-    .footer .footer-top {
-        flex-direction: column !important; /* Ustma-ust qilish */
-        gap: 25px;
-        text-align: center;
-    }
-
-    .footer .social-icons {
-        justify-content: center;
-    }
-
-    .custom-toggler { display: flex; z-index: 1101; }
-
-    .navbar-collapse.show {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(2, 2, 5, 0.98);
-        backdrop-filter: blur(20px);
-        z-index: 1100;
-    }
-
-    .navbar-nav {
-        flex-direction: column !important;
-        gap: 25px !important;
-    }
-
-    .mobile-socials {
-        display: flex !important;
-        margin-top: 30px;
-        gap: 20px;
-    }
-}
-
-/* 2. Desktop (min-width: 992px) */
-@media (min-width: 992px) {
-    .nav-menu { display: flex !important; }
-    .navbar .nav-menu ul { display: flex; gap: 2.5rem; }
-
-    .navbar .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--primary-gradient);
-        transition: 0.4s;
-    }
-
-    .navbar .nav-link:hover::after, .navbar .nav-link.active::after {
-        width: 100%;
-    }
-}
 
 /* --- FOOTER CORE --- */
 .footer {

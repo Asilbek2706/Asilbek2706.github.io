@@ -24,17 +24,19 @@ const handleNavbar = () => {
     const menuToggle = document.querySelector('.custom-toggler');
     const navCollapse = document.querySelector('.navbar-collapse');
 
-    window.addEventListener('scroll', () => {
-        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
     if (menuToggle && navCollapse) {
         menuToggle.addEventListener('click', () => {
+            // Mana shu qator 'X' shaklini boshqaradi
             menuToggle.classList.toggle('active');
+
+            // Bu menyuni ochadi/yopadi
             navCollapse.classList.toggle('show');
+
+            // Orqa fonni qotiradi
             document.body.style.overflow = navCollapse.classList.contains('show') ? 'hidden' : '';
         });
 
+        // Link bosilganda hammasini yopish
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
