@@ -4,41 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Asilbek Karomatov</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/about.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="cursor-follower"></div>
 
-<header class="navbar">
+<header class="navbar navbar-expand-lg">
     <div class="container header-container">
         <div class="logo" data-aos="fade-right">
-            <a href="index.html">Asilbek<span>.dev</span></a>
+            <a href="../index.html">Asilbek<span>.dev</span></a>
         </div>
 
-        <div class="menu-toggle" id="mobile-menu">
-            <i class="bi bi-list"></i>
-        </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#asilbekNav" aria-controls="asilbekNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list text-white" style="font-size: 2rem;"></i>
+        </button>
 
-        <nav class="nav-menu">
-            <ul>
+        <nav class="collapse navbar-collapse nav-menu" id="asilbekNav">
+            <ul class="navbar-nav mx-auto">
                 <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link active">About</a></li>
                 <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-        </nav>
 
-        <div class="header-socials" data-aos="fade-left">
-            <a href="https://github.com/Asilbek2706" target="_blank">
-                <i class="bi bi-github"></i>
-            </a>
-        </div>
+            <div class="header-socials d-none d-lg-flex" data-aos="fade-left">
+                <a href="https://github.com/Asilbek2706" target="_blank">
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+        </nav>
     </div>
 </header>
+
 <main class="about-page">
     <section class="section-padding">
         <div class="container">
@@ -85,18 +90,28 @@
         <div class="footer-top">
             <div class="logo">Asilbek<span>.dev</span></div>
             <div class="social-icons">
-                <a href="#" class="social-link"><i class="bi bi-github"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-telegram"></i></a>
+                <a href="https://t.me/as1lbek_2706" class="social-link" aria-label="Telegram" target="_blank"><i class="bi bi-telegram"></i></a>
+                <a href="https://instagram.com/as1lbek_2706" class="social-link" aria-label="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/asilbek-karomatov-91336b33b" class="social-link" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
+                <a href="mailto:asilbekkaromatov2@gmail.com" class="social-link" aria-label="Email" target="_blank"><i class="bi bi-envelope-fill"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Designed with <i class="bi bi-heart-fill" style="color: #ff0055;"></i> by Asilbek Karomatov &copy; 2026</p>
+            <p>&copy; 2026 Asilbek Karomatov. Crafted with <i class="bi bi-heart-fill" style="color: #ff4d4d;"></i> and SASS.</p>
         </div>
     </div>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="module" src="../js/main.js"></script>
 
