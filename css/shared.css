@@ -17,7 +17,7 @@
 body {
     background-color: var(--bg-dark);
     color: #ffffff;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
 }
@@ -104,6 +104,12 @@ body {
 
 .navbar .nav-menu ul li {
     list-style: none !important;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #00f2fe, #7000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .navbar .nav-link {
