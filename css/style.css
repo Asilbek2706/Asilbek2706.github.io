@@ -143,14 +143,21 @@ canvas#star-canvas {
 }
 .navbar .custom-toggler {
   display: none;
-  border: none !important;
+  padding: 10px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px;
+  flex-direction: column;
+  gap: 5px;
   background: transparent;
-  padding: 10px;
   cursor: pointer;
+  transition: 0.3s;
 }
 .navbar .custom-toggler:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+.navbar .custom-toggler:hover {
+  border-color: #00f2fe !important;
 }
 .navbar .custom-toggler .hamburger-lines {
   display: flex;
@@ -162,10 +169,10 @@ canvas#star-canvas {
   height: 2px;
   width: 25px;
   background: #ffffff;
-  transition: 0.3s;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .navbar .custom-toggler {
     display: flex;
   }
@@ -192,26 +199,7 @@ canvas#star-canvas {
   .navbar .nav-menu.show .navbar-nav li {
     list-style: none !important;
   }
-  .navbar .nav-menu {
-    /* Desktopda navbar ichidagi ortiqcha elementlarni tozalash */
-  }
-  .navbar .nav-menu .nav-menu {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-  }
-  .navbar .nav-menu .navbar-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center;
-  }
-  .navbar .nav-menu {
-    /* Menyu ichidagi socials desktopda mutlaqo ko'rinmasligi shart */
-  }
-  .navbar .nav-menu .nav-menu .mobile-socials {
-    display: none !important;
-  }
-  .mobile-socials {
+  .navbar .mobile-socials {
     display: flex;
     justify-content: center;
     margin-top: 1.5rem;

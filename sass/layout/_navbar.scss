@@ -41,17 +41,16 @@
         }
     }
 
-    // DESKTOP MENU & NUQTANI YO'QOTISH
     .nav-menu {
         .navbar-nav {
             display: flex;
-            list-style: none !important; // Nuqtani o'chirish
+            list-style: none !important;
             gap: 2.5rem;
             padding: 0;
             margin: 0;
 
             li {
-                list-style: none !important; // Har bir li dan nuqtani o'chirish
+                list-style: none !important;
                 padding: 0;
                 margin: 0;
             }
@@ -85,7 +84,6 @@
         }
     }
 
-    // SOCIAL ICONS
     .header-socials {
         display: flex;
         align-items: center;
@@ -106,39 +104,48 @@
         }
     }
 
-    // TOGGLER (HAMBURGER) - Desktopda yashirish
+    // --- TOGGLER (HAMBURGER) ---
     .custom-toggler {
-        display: none; // Default holatda yashirin (Desktop)
-        border: none !important;
+        display: none; // Desktopda yashirin
+        padding: 10px 12px;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px;
+        flex-direction: column;
+        gap: 5px;
         background: transparent;
-        padding: 10px;
         cursor: pointer;
+        transition: 0.3s;
 
         &:focus {
             outline: none !important;
             box-shadow: none !important;
         }
 
+        &:hover {
+            border-color: v.$primary !important;
+        }
+
         .hamburger-lines {
             display: flex;
             flex-direction: column;
             gap: 5px;
+
             .line {
                 display: block;
                 height: 2px;
                 width: 25px;
                 background: v.$text-main;
-                transition: 0.3s;
+                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
         }
     }
 }
 
-// RESPONSIVE LOGIC
-@media (max-width: 992px) {
+// --- RESPONSIVE LOGIC ---
+@media (max-width: 991px) {
     .navbar {
         .custom-toggler {
-            display: flex; // Faqat mobilda chiqadi
+            display: flex; // Mobilda ko'rinadi
         }
 
         .nav-menu {
@@ -168,32 +175,12 @@
                     }
                 }
             }
-
-            /* Desktopda navbar ichidagi ortiqcha elementlarni tozalash */
-                .nav-menu {
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .navbar-nav {
-                    display: flex !important;
-                    flex-direction: row !important;
-                    align-items: center;
-                }
-
-                /* Menyu ichidagi socials desktopda mutlaqo ko'rinmasligi shart */
-                .nav-menu .mobile-socials {
-                    display: none !important;
-                }
-            }
         }
 
-        // Mobilda ijtimoiy tarmoqlar (agar menyu ichida bo'lsa)
         .mobile-socials {
             display: flex;
             justify-content: center;
             margin-top: 1.5rem;
         }
-
+    }
 }

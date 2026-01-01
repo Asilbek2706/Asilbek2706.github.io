@@ -12,6 +12,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Umumiy nuqtalarni yo'qotish */
+    list-style: none !important;
 }
 
 body {
@@ -28,7 +30,7 @@ body {
     padding: 0 24px;
 }
 
-/* --- NAVBAR --- */
+/* --- NAVBAR CORE --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -66,50 +68,12 @@ body {
     text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
 }
 
-/* NUQTANI YO'QOTISH UCHUN */
+/* --- NAVIGATION LINKS --- */
 .navbar .nav-menu ul {
     display: flex;
-    list-style: none !important; /* Standart nuqtani o'chiradi */
     gap: 2.5rem;
     padding: 0;
     margin: 0;
-}
-
-.nav-item {
-    list-style: none !important;
-}
-
-/* --- 3. TOGGLER DEFAULT EFFEKTINI O'CHIRISH --- */
-.navbar-toggler:focus {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-/* --- 4. MOBILDA NAVBAR FONINI TO'G'IRLASH --- */
-@media (max-width: 992px) {
-    .navbar-collapse.show {
-        background: rgba(2, 2, 5, 0.98);
-        backdrop-filter: blur(15px);
-        padding: 2rem;
-        border-bottom: 2px solid var(--accent-cyan);
-        text-align: center;
-    }
-
-    .navbar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-.navbar .nav-menu ul li {
-    list-style: none !important;
-}
-
-.highlight {
-    background: linear-gradient(135deg, #00f2fe, #7000ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .navbar .nav-link {
@@ -140,17 +104,88 @@ body {
     width: 100%;
 }
 
-.header-socials { display: flex; gap: 1rem; }
+/* --- SOCIALS --- */
+.header-socials { display: flex; gap: 1rem; align-items: center; }
 .header-socials a { color: #ffffff; font-size: 1.5rem; transition: 0.3s; text-decoration: none; }
 .header-socials a:hover { color: var(--accent-cyan); transform: translateY(-3px); }
 
-/* --- SECTION PADDING --- */
+/* --- TOGGLER (HAMBURGER) --- */
+.custom-toggler {
+    display: none; /* Desktopda chiqmaydi */
+    padding: 10px 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.custom-toggler:hover {
+    border-color: var(--accent-cyan) !important;
+}
+
+.custom-toggler .line {
+    width: 25px;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+
+/* --- RESPONSIVE LOGIC --- */
+
+/* Desktop (992px+) */
+@media (min-width: 992px) {
+    .nav-menu { display: flex !important; align-items: center; }
+    .mobile-socials.d-lg-none { display: none !important; }
+}
+
+/* Mobile (991px-) */
+@media (max-width: 991px) {
+    .custom-toggler { display: flex; }
+
+    .nav-menu:not(.show) { display: none !important; }
+
+    .navbar-collapse.show {
+        display: block !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 2, 5, 0.98);
+        backdrop-filter: blur(15px);
+        padding: 2rem;
+        border-bottom: 2px solid var(--accent-cyan);
+        text-align: center;
+    }
+
+    .navbar-nav {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .mobile-socials {
+        display: flex !important;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+}
+
+/* --- GLOBAL CLASSES --- */
+.highlight {
+    background: linear-gradient(135deg, #00f2fe, #7000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .section-padding {
     padding-top: calc(var(--nav-height) + 60px);
     padding-bottom: 80px;
 }
 
-/* --- FOOTER (TELEFONDA KETMA-KET QILINDI) --- */
+/* --- FOOTER --- */
 .footer {
     padding: 60px 0 30px;
     background: rgba(2, 2, 5, 0.8);
@@ -167,25 +202,14 @@ body {
     margin-bottom: 40px;
 }
 
-.footer .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #ffffff;
-}
-
+.footer .logo { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
 .footer .logo span { color: #00f2fe; }
 
-.footer .social-icons {
-    display: flex;
-    gap: 15px;
-}
+.footer .social-icons { display: flex; gap: 15px; }
 
 .footer .social-link {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -206,58 +230,37 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- TOGGLER --- */
-.custom-toggler {
-    padding: 10px 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 8px;
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    cursor: pointer;
+.footer .footer-bottom p {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.footer .footer-bottom p i {
+    animation: heartBeat 1.5s infinite;
 }
 
-.toggler-icon {
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff;
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.3);
+    }
+    30% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.3);
+    }
+    70% {
+        transform: scale(1);
+    }
 }
 
-/* --- MOBILE LOGIC --- */
 @media (max-width: 991px) {
-    .custom-toggler { display: flex; }
-
-    .nav-menu:not(.show) { display: none !important; }
-
-    .navbar-collapse.show {
-        display: block !important;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(2, 2, 5, 0.98);
-        backdrop-filter: blur(15px);
-        padding: 2rem;
-        border-bottom: 2px solid var(--accent-cyan);
-    }
-
-    .navbar-nav {
-        flex-direction: column;
-        gap: 20px !important;
-        list-style: none !important;
-    }
-
-    /* FOOTER MOBILDA KETMA-KET */
-    .footer .footer-top {
-        flex-direction: column !important;
-        gap: 25px;
-        text-align: center;
-    }
-
-    .footer .social-icons {
-        justify-content: center;
-    }
-
-    .cursor-follower { display: none !important; }
+    .footer .footer-top { flex-direction: column; gap: 25px; text-align: center; }
+    .footer .social-icons { justify-content: center; }
 }
