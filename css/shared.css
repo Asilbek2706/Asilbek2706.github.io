@@ -27,26 +27,6 @@ body.no-scroll {
     overflow: hidden;
 }
 
-/* --- CUSTOM CURSOR FOLLOWER --- */
-.cursor-follower {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: #00f2fe;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow: 0 0 20px #00f2fe;
-    visibility: visible;
-}
-
-@media (max-width: 1024px) {
-    .cursor-follower {
-        display: none !important;
-        visibility: hidden !important;
-    }
-}
-
 /* --- NAVBAR CORE --- */
 .navbar {
     position: fixed;
