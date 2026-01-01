@@ -117,7 +117,6 @@
     50% { opacity: 0; }
 }
 
-// Responsive sozlamalar
 @media (max-width: 992px) {
     .hero .hero-grid {
         grid-template-columns: 1fr;
@@ -130,5 +129,10 @@
     .hero .hero-image-container .image-border {
         width: 300px;
         height: 300px;
+    }
+
+    .cursor-follower {
+        display: none !important;
+        visibility: hidden !important;
     }
 }

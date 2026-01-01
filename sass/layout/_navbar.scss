@@ -8,12 +8,11 @@
     width: 100%;
     z-index: 1000;
     padding: 1.5rem 0;
-    background: rgba(2, 2, 5, 0.8); // Koinot rangiga mos shaffoflik
-    backdrop-filter: blur(12px);    // Orqa fonni xiralashtirish (Glass effect)
+    background: rgba(2, 2, 5, 0.8); 
+    backdrop-filter: blur(12px);    
     border-bottom: 1px solid v.$glass-border;
     transition: v.$transition;
 
-    // Scroll bo'lganda navbar kichrayishi uchun (JS orqali .scrolled klassi qo'shiladi)
     &.scrolled {
         padding: 0.8rem 0;
         background: rgba(2, 2, 5, 0.95);
@@ -92,9 +91,8 @@
     }
 }
 
-// Mobil qurilmalar uchun moslashuvchanlik (Responsive)
 @media (max-width: 768px) {
     .nav-menu {
-        display: none; // Mobil menyu uchun keyinchalik "hamburger" qo'shish mumkin
+        display: none;
     }
 }

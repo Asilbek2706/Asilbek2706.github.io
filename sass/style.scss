@@ -14,14 +14,14 @@
 @use 'components/cards';
 @use 'components/projects';
 
-// Global kursor effekti (style.scss ichida qolsa bo'ladi)
 .cursor-follower {
     position: fixed;
     width: 20px;
     height: 20px;
-    background: v.$primary; // Endi v.$ orqali chaqiramiz
+    background: v.$primary; 
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     box-shadow: 0 0 20px v.$primary;
+    visibility: visible;
 }

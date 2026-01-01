@@ -5,9 +5,9 @@ export const initProgressBars = () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const targetWidth = entry.target.style.width;
-                entry.target.style.width = '0%'; // Avval nol qilamiz
+                entry.target.style.width = '0%';
                 setTimeout(() => {
-                    entry.target.style.width = targetWidth; // Keyin o'z qiymatiga qaytaramiz
+                    entry.target.style.width = targetWidth; 
                 }, 100);
                 observer.unobserve(entry.target);
             }

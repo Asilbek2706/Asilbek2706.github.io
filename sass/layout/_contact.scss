@@ -124,7 +124,6 @@
     }
 }
 
-// Mobil versiya
 @media (max-width: 992px) {
     .contact .contact-grid {
         grid-template-columns: 1fr;
@@ -132,5 +131,10 @@
     }
     .contact-form {
         padding: 30px;
+    }
+
+    .cursor-follower {
+        display: none;
+        visibility: hidden;
     }
 }

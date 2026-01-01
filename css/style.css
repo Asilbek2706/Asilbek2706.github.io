@@ -257,6 +257,10 @@ canvas#star-canvas {
     width: 300px;
     height: 300px;
   }
+  .cursor-follower {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }
 .contact {
   padding: 100px 0;
@@ -377,6 +381,10 @@ canvas#star-canvas {
   .contact-form {
     padding: 30px;
   }
+  .cursor-follower {
+    display: none;
+    visibility: hidden;
+  }
 }
 .footer {
   padding: 60px 0 30px;
@@ -466,6 +474,10 @@ canvas#star-canvas {
     flex-direction: column;
     gap: 30px;
     text-align: center;
+  }
+  .cursor-follower {
+    display: none;
+    visibility: hidden;
   }
 }
 .btn {
@@ -715,4 +727,5 @@ canvas#star-canvas {
   pointer-events: none;
   z-index: 9999;
   box-shadow: 0 0 20px #00f2fe;
+  visibility: visible;
 }/*# sourceMappingURL=style.css.map */

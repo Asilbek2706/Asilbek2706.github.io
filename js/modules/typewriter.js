@@ -18,7 +18,7 @@ export const initTypewriter = (elementId, words) => {
 
         if (!isDeleting && charIndex === currentWord.length) {
             isDeleting = true;
-            typeSpeed = 2000; // So'z oxirida kutish
+            typeSpeed = 2000; 
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             wordIndex = (wordIndex + 1) % words.length;
