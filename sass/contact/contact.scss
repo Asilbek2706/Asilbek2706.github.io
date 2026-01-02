@@ -1,0 +1,267 @@
+@use '../projects/abstract/variables' as v;
+@use '../projects/abstract/functions' as f;
+@use '../projects/abstract/mixins' as m;
+
+// 1. Background Visual Effects
+.contact-bg-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: f.rem(500px);
+  height: f.rem(500px);
+  background: radial-gradient(circle, f.clr-alpha(v.$clr-primary, 0.05) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: bg-move 15s infinite alternate ease-in-out;
+}
+
+// 2. Layout Structure
+.contact-container {
+  max-width: v.$layout-max-width;
+  margin: 0 auto;
+  padding: f.rem(120px) f.rem(40px);
+
+  @include m.respond-to("tablet") {
+    padding: f.rem(80px) f.rem(20px);
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: f.rem(60px);
+  margin-top: f.rem(40px);
+
+  @include m.respond-to("tablet") {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 3. Contact Information Cards
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: f.rem(25px);
+
+  .info-card {
+    background: v.$card-bg;
+    border: 1px solid v.$brd-color;
+    padding: f.rem(25px);
+    border-radius: f.rem(16px);
+    display: flex;
+    align-items: center;
+    gap: f.rem(20px);
+    transition: v.$tr-smooth;
+    text-decoration: none;
+
+    i {
+      font-size: f.rem(28px);
+      color: v.$clr-primary;
+      filter: drop-shadow(v.$fx-glow);
+    }
+
+    div {
+      h4 { color: v.$txt-main; margin-bottom: 5px; font-size: f.rem(18px); }
+      p { color: v.$txt-body; margin: 0; font-size: f.rem(15px); }
+    }
+
+    &:hover {
+      border-color: v.$clr-primary;
+      transform: translateX(10px);
+      background: f.clr-alpha(v.$clr-primary, 0.05);
+      color: inherit;
+    }
+  }
+
+  .contact-status {
+    margin-top: f.rem(20px);
+    padding: f.rem(15px);
+    background: f.clr-alpha(#10b981, 0.1);
+    border: 1px solid f.clr-alpha(#10b981, 0.2);
+    border-radius: f.rem(10px);
+    color: #10b981;
+    font-weight: 600;
+    font-size: f.rem(14px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+// 4. Cyberpunk Form Styling
+// 4. Cyberpunk Form Styling
+.cyber-form {
+  background: v.$card-bg;
+  border: 1px solid v.$brd-color;
+  padding: f.rem(45px);
+  border-radius: f.rem(24px);
+  position: relative;
+  transition: v.$tr-smooth;
+
+  // Static vertical accent line
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10%;
+    height: 80%;
+    width: 3px;
+    background: v.$clr-primary;
+    box-shadow: v.$fx-glow;
+  }
+
+  &:hover {
+    border-color: f.clr-alpha(v.$clr-primary, 0.3);
+    box-shadow: 0 0 f.rem(30px) f.clr-alpha(v.$clr-primary, 0.05);
+    transform: translateY(f.rem(-5px)); // Subtle lift effect
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: f.rem(20px);
+    @include m.respond-to("mobile") { grid-template-columns: 1fr; }
+  }
+
+}
+
+// 5. Interactive Input Groups
+.input-group {
+  position: relative;
+  margin-top: f.rem(25px);
+  margin-bottom: f.rem(30px);
+
+  // Dynamic left border on hover/focus
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: v.$clr-primary;
+    box-shadow: v.$fx-glow;
+    transition: height 0.3s ease;
+    z-index: 10;
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    height: 100%;
+  }
+
+  input, textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid v.$brd-color;
+    border-radius: f.rem(12px);
+    padding: f.rem(15px);
+    color: v.$txt-main;
+    transition: v.$tr-fast;
+    display: block;
+
+    &::placeholder { color: transparent; }
+
+    &:focus {
+      outline: none;
+      border-color: v.$clr-primary;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: f.rem(15px);
+    top: f.rem(15px);
+    color: v.$txt-muted;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 5;
+    padding: 0 f.rem(5px);
+    background: transparent;
+  }
+
+  textarea ~ label {
+    top: f.rem(18px);
+  }
+
+  // Floating Label Logic
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label,
+  textarea:focus ~ label,
+  textarea:not(:placeholder-shown) ~ label {
+    top: f.rem(-20px) !important;
+    left: f.rem(18px);
+    font-size: f.rem(12px);
+    color: v.$clr-primary;
+    font-weight: 700;
+    background: v.$card-bg;
+    z-index: 6;
+    transform: none;
+  }
+
+  // Bottom glow indicator
+  .input-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: v.$clr-primary;
+    box-shadow: v.$fx-glow;
+    transition: width 0.4s ease;
+    z-index: 1;
+  }
+
+  input:focus ~ .input-glow,
+  textarea:focus ~ .input-glow {
+    width: 100%;
+  }
+}
+
+// 6. Action Button
+.submit-btn {
+  width: 100%;
+  background: v.$clr-primary;
+  color: v.$clr-bg;
+  border: none;
+  padding: f.rem(18px);
+  border-radius: f.rem(12px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: f.rem(10px);
+  cursor: pointer;
+  transition: v.$tr-smooth;
+
+  &:hover {
+    box-shadow: v.$fx-glow-strong;
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+  }
+}
+
+// Global Keyframes
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bg-move {
+  0% { transform: translate(-60%, -40%); }
+  100% { transform: translate(-40%, -60%); }
+}

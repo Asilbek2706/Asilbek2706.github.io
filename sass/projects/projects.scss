@@ -1,34 +1,259 @@
-// 1. Core / Abstracts
-@use 'abstract/variables' as v;
-@use 'abstract/functions' as f;
-@use 'abstract/mixins' as m;
+@use '../projects/abstract/variables' as v;
+@use '../projects/abstract/functions' as f;
+@use '../projects/abstract/mixins' as m;
 
-// 2. Components
-@use 'component/badge';
-@use 'component/project-card';
+// 1. Kontakt Konteyneri
+.contact-container {
+  max-width: v.$layout-max-width;
+  margin: 0 auto;
+  padding: f.rem(120px) f.rem(40px);
+  position: relative;
 
-// 3. Layout Parts
-@use 'layout/projects-header';
-@use 'layout/projects-grid';
-
-// Global Styles for Projects Page
-body {
-  background-color: v.$clr-bg;
-  color: v.$txt-main;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  overflow-x: hidden;
+  @include m.respond-to("tablet") {
+    padding: f.rem(80px) f.rem(20px);
+  }
 }
 
-// Helper: Custom scrollbar (ixtiyoriy, chiroyli chiqadi)
-::-webkit-scrollbar {
-  width: 8px;
+// 2. Orqa fondagi dinamik nurlanish
+.contact-bg-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: f.rem(600px);
+  height: f.rem(600px);
+  background: radial-gradient(circle, f.clr-alpha(v.$clr-primary, 0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+  animation: float-glow 20s infinite alternate ease-in-out;
 }
-::-webkit-scrollbar-track {
-  background: v.$clr-bg;
+
+@keyframes float-glow {
+  from { transform: translate(-60%, -40%); }
+  to { transform: translate(-40%, -60%); }
 }
-::-webkit-scrollbar-thumb {
-  background: f.clr-alpha(v.$clr-primary, 0.2);
-  border-radius: 10px;
-  &:hover { background: v.$clr-primary; }
+
+// 3. Kontakt Grid (Chap va O'ng tomon)
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: f.rem(60px);
+  margin-top: f.rem(50px);
+
+  @include m.respond-to("tablet") {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 4. Chap tomon: Info Kartalar
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: f.rem(25px);
+
+  .info-card {
+    background: v.$card-bg;
+    border: 1px solid v.$brd-color;
+    padding: f.rem(30px);
+    border-radius: f.rem(20px);
+    display: flex;
+    align-items: center;
+    gap: f.rem(20px);
+    transition: v.$tr-smooth;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+
+    // Hoverda chapdan chiqadigan neon chiziq
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background: v.$clr-primary;
+      box-shadow: v.$fx-glow;
+      transition: width 0.3s ease;
+    }
+
+    i {
+      font-size: f.rem(30px);
+      color: v.$clr-primary;
+      filter: drop-shadow(v.$fx-glow);
+      transition: v.$tr-fast;
+    }
+
+    h4 { color: v.$txt-main; margin-bottom: 5px; font-size: f.rem(18px); }
+    p { color: v.$txt-body; margin: 0; font-size: f.rem(15px); }
+
+    &:hover {
+      background: f.clr-alpha(v.$clr-primary, 0.05);
+      border-color: v.$clr-primary;
+      transform: translateX(10px);
+
+      &::before { width: 4px; }
+      i { transform: scale(1.1); }
+    }
+  }
+
+  .contact-status {
+    margin-top: f.rem(10px);
+    padding: f.rem(15px) f.rem(20px);
+    background: f.clr-alpha(#10b981, 0.05);
+    border: 1px solid f.clr-alpha(#10b981, 0.2);
+    border-radius: f.rem(12px);
+    color: #10b981;
+    font-size: f.rem(14px);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+// 5. O'ng tomon: Cyber Form
+.cyber-form {
+  background: v.$card-bg;
+  border: 1px solid v.$brd-color;
+  padding: f.rem(50px);
+  border-radius: f.rem(28px);
+  position: relative;
+
+  // Formaning chap burchagidagi dekorativ chiziq
+  &::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 20%;
+    height: 60%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, v.$clr-primary, transparent);
+    box-shadow: v.$fx-glow;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: f.rem(25px);
+    @include m.respond-to("mobile") { grid-template-columns: 1fr; }
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: f.rem(35px);
+
+    input, textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid v.$brd-color;
+      border-radius: f.rem(12px);
+      padding: f.rem(20px) f.rem(15px) f.rem(10px);
+      color: v.$txt-main;
+      font-size: f.rem(16px);
+      transition: all 0.3s ease;
+
+      &::placeholder { color: transparent; }
+
+      &:focus {
+        outline: none;
+        background: f.clr-alpha(v.$clr-primary, 0.02);
+        border-color: f.clr-alpha(v.$clr-primary, 0.5);
+      }
+    }
+
+    label {
+      position: absolute;
+      left: f.rem(15px);
+      top: 50%;
+      transform: translateY(-50%);
+      color: v.$txt-muted;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      i { font-size: f.rem(18px); transition: 0.3s; }
+    }
+
+    textarea ~ label { top: f.rem(25px); transform: none; }
+
+    // Floating Logic
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label,
+    textarea:focus ~ label,
+    textarea:not(:placeholder-shown) ~ label {
+      top: f.rem(-12);
+      left: f.rem(10px);
+      font-size: f.rem(13px);
+      color: v.$clr-primary;
+      font-weight: 700;
+      background: v.$clr-bg;
+      padding: 0 f.rem(8px);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      i { color: v.$clr-primary; transform: scale(1.1); }
+    }
+
+    // Pastki neon chiziq effekti
+    .input-border-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: v.$clr-primary;
+      box-shadow: v.$fx-glow;
+      transition: width 0.4s ease;
+    }
+
+    input:focus ~ .input-border-glow,
+    textarea:focus ~ .input-border-glow {
+      width: 100%;
+    }
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: v.$clr-primary;
+    color: v.$clr-bg;
+    border: none;
+    padding: f.rem(20px);
+    border-radius: f.rem(14px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: v.$tr-smooth;
+
+    i { font-size: f.rem(20px); transition: 0.3s; }
+
+    &:hover {
+      box-shadow: v.$fx-glow-strong;
+      transform: translateY(-5px);
+      i { transform: translateX(5px) rotate(-10deg); }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
 }

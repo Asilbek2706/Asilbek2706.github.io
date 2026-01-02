@@ -47,6 +47,24 @@ const handleNavbar = () => {
     }
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            // Boshqa ochilganlarini yopish (optional)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) otherItem.classList.remove('active');
+            });
+
+            // Tanlanganini ochish/yopish
+            item.classList.toggle('active');
+        });
+    });
+});
+
 const handleContactForm = () => {
     const contactForm = document.querySelector('.contact-form form');
     if (!contactForm) return;
@@ -82,4 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
     initProgress();
     handleNavbar();
     handleContactForm();
+});
+
+const contactForm = document.querySelector('.cyber-form');
+const submitBtn = document.querySelector('.submit-btn');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Tugmani bloklash va loading holatiga o'tkazish
+    submitBtn.innerHTML = `<span>Processing...</span> <i class="bi bi-hourglass-split"></i>`;
+    submitBtn.style.pointerEvents = 'none';
+    submitBtn.style.opacity = '0.7';
+
+    // Sun'iy delay (backend bo'lmagani uchun)
+    setTimeout(() => {
+        submitBtn.innerHTML = `<span>Success!</span> <i class="bi bi-check-all"></i>`;
+        submitBtn.style.background = '#10b981';
+        submitBtn.style.boxShadow = '0 0 20px #10b981';
+
+        // Formani tozalash
+        contactForm.reset();
+
+        // 3 soniyadan keyin tugmani qaytarish
+        setTimeout(() => {
+            submitBtn.innerHTML = `<span>Send Message</span> <i class="bi bi-send"></i>`;
+            submitBtn.style = '';
+        }, 3000);
+    }, 2000);
 });
