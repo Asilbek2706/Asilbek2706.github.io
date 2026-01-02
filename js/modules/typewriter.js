@@ -8,14 +8,11 @@ export const initTypewriter = (elementId, words) => {
 
     function type() {
         const currentWord = words[wordIndex];
+        el.textContent = isDeleting
+            ? currentWord.substring(0, charIndex - 1)
+            : currentWord.substring(0, charIndex + 1);
 
-        if (isDeleting) {
-            el.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            el.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
+        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
 
         let typeSpeed = isDeleting ? 50 : 150;
 
@@ -27,53 +24,56 @@ export const initTypewriter = (elementId, words) => {
             wordIndex = (wordIndex + 1) % words.length;
             typeSpeed = 500;
         }
-
         setTimeout(type, typeSpeed);
     }
-
     type();
 };
 
+// 2. FAQ Logic (Tuzatilgan variant)
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const item = button.parentElement;
-        const answer = item.querySelector('.answer-content');
-        const text = answer.innerText;
+        const answerWrapper = item.querySelector('.faq-answer');
+        const answerPara = item.querySelector('.answer-content p'); // Aniqroq selector
 
-        // Agar allaqachon ochiq bo'lsa, yopamiz
-        if (item.classList.contains('active')) {
-            item.classList.remove('active');
-            item.querySelector('.faq-answer').style.maxHeight = null;
-            return;
+        // Asl matnni saqlab qo'yish (Yo'qolmasligi uchun)
+        if (!item.hasAttribute('data-original-text')) {
+            item.setAttribute('data-original-text', answerPara.innerText.trim());
         }
+        const fullText = item.getAttribute('data-original-text');
 
-        // Boshqa barcha ochiqlarni yopish
+        const isActive = item.classList.contains('active');
+
+        // Boshqalarni yopish
         document.querySelectorAll('.faq-item').forEach(el => {
             el.classList.remove('active');
             el.querySelector('.faq-answer').style.maxHeight = null;
         });
 
-        // Hozirgisini ochish
-        item.classList.add('active');
-        const answerWrapper = item.querySelector('.faq-answer');
-        answerWrapper.style.maxHeight = answerWrapper.scrollHeight + "px";
+        if (!isActive) {
+            item.classList.add('active');
 
-        // Typewriter effekti
-        if (!answer.getAttribute('data-typed')) {
-            answer.innerText = '';
-            answer.classList.add('typing');
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    answer.innerText += text.charAt(i);
-                    i++;
-                    setTimeout(type, 15); // Tezlik (ms)
-                } else {
-                    answer.classList.remove('typing');
-                    answer.setAttribute('data-typed', 'true');
+            // Typewriter effekti
+            if (!item.hasAttribute('data-typed')) {
+                answerPara.innerText = '';
+                let i = 0;
+
+                function typeFAQ() {
+                    if (i < fullText.length) {
+                        answerPara.innerText += fullText.charAt(i);
+                        i++;
+                        // MUHIM: Har bir harfda balandlikni yangilash
+                        answerWrapper.style.maxHeight = answerWrapper.scrollHeight + "px";
+                        setTimeout(typeFAQ, 15);
+                    } else {
+                        item.setAttribute('data-typed', 'true');
+                    }
                 }
+                typeFAQ();
+            } else {
+                // Agar allaqachon yozilgan bo'lsa, shunchaki ochish
+                answerWrapper.style.maxHeight = answerWrapper.scrollHeight + "px";
             }
-            type();
         }
     });
 });
