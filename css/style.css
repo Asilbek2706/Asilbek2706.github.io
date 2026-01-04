@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
   background-color: #020205;
   color: #ffffff;
@@ -615,46 +620,153 @@ body {
     text-align: center;
   }
 }
+/**
+ * ASILBEK.DEV - PROFESSIONAL BUTTON SYSTEM
+ * Barcha holatlar: Normal, Hover, Loading, Success
+ */
 .btn {
-  text-decoration: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1rem;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
   border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
 }
 .btn i {
   transition: transform 0.3s ease;
+  font-size: 1.2rem;
 }
-.btn:hover i {
-  transform: translateX(5px);
+.btn:disabled {
+  cursor: wait;
+  opacity: 0.8;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #00f2fe, #7000ff);
   color: #000 !important;
-  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
 }
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
-  filter: brightness(1.1);
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 210, 255, 0.5);
+  filter: brightness(1.15);
+}
+.btn-primary:hover:not(:disabled) i {
+  transform: translateX(8px) rotate(-15deg) scale(1.1);
+}
+.btn-primary:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
-.btn-outline {
-  border: 2px solid #00f2fe;
-  color: #00f2fe !important;
-  background: transparent;
+.btn-success {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #28a745 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5) !important;
+  animation: success-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.btn-outline:hover {
-  background: rgba(0, 242, 254, 0.1);
-  transform: translateY(-3px);
+.btn-success:hover {
+  background: #218838 !important;
+  transform: scale(1.02);
+}
+.btn-success i {
+  transform: scale(1.3);
+  margin-right: 5px;
+}
+
+.btn-secondary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #28a745 !important;
+  background-image: none !important;
+  color: #fff !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner-border-sm {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.75s linear infinite;
+}
+
+.form-group input,
+.form-group textarea {
+  transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00f2fe !important;
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .skills {
@@ -665,13 +777,13 @@ body {
 .skills .section-title {
   text-align: center;
   margin-bottom: 60px;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 .skills .section-title .highlight {
   background: linear-gradient(135deg, #00f2fe, #7000ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+  filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.4));
 }
 
 @media screen and (max-width: 768px) {
@@ -684,92 +796,98 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .skill-card {
-  background: rgba(255, 255, 255, 0.015);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 45px 35px;
-  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 24px;
   text-align: center;
-  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+}
+.skill-card .skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.skill-card .skill-info span {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 500;
+  opacity: 0.8;
 }
 .skill-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(0, 242, 254, 0.08), transparent 60%);
+  background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1), transparent 70%);
   opacity: 0;
   transition: 0.5s;
 }
 .skill-card i {
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   background: linear-gradient(135deg, #00f2fe, #7000ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  margin-bottom: 25px;
-  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.2));
-  transition: 0.5s ease;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.3));
+  transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .skill-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 30px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 1px;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
 .skill-card .progress-bar {
   width: 100%;
-  height: 7px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
 }
 .skill-card .progress-bar .progress {
   height: 100%;
   background: linear-gradient(135deg, #00f2fe, #7000ff);
-  border-radius: 10px;
+  border-radius: 20px;
   width: 0;
   position: relative;
-  box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
 }
 .skill-card .progress-bar .progress::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
+  width: 150px;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-  animation: progress-shine 3s infinite linear;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progress-shine 2.5s infinite linear;
 }
 .skill-card:hover {
-  transform: translateY(-12px);
-  border-color: rgba(0, 242, 254, 0.4);
-  background: rgba(0, 242, 254, 0.02);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(-15px) scale(1.02);
+  border-color: rgba(0, 242, 254, 0.5);
+  background: rgba(0, 242, 254, 0.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 242, 254, 0.1);
 }
 .skill-card:hover::before {
   opacity: 1;
 }
 .skill-card:hover i {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.6));
+  transform: scale(1.2) rotate(-5deg);
+  filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.8));
 }
 
-@keyframes progress-shine {
-  0% {
-    left: -150px;
-  }
-  100% {
-    left: 100%;
-  }
-}
 .projects {
   padding: 100px 0;
 }

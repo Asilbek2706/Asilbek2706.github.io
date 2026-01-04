@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
+/**
+ * ASILBEK.DEV - PREMIUM ABOUT SECTION
+ * Professional Typography & Glassmorphism
+ */
 .about-page {
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: #030508;
@@ -11,7 +15,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 0% 0%, rgba(0, 242, 254, 0.04) 0%, transparent 40%);
+  background: radial-gradient(circle at 0% 0%, rgba(0, 242, 254, 0.05) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -61,6 +65,7 @@
   background: rgba(255, 255, 255, 0.01);
   border-radius: 50%;
   transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 @media (max-width: large) {
   .about-visual .circle-container {
@@ -79,16 +84,18 @@
   background: rgba(0, 242, 254, 0.03);
 }
 .about-visual .circle-container:hover .profile-circle {
-  filter: saturate(1) contrast(1);
+  filter: saturate(1.1) contrast(1.1);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
 }
 .about-visual .circle-container:hover .rotating-border {
-  transform: rotate(180deg) scale(1.1);
-  border-color: rgba(0, 242, 254, 0.4);
+  transform: rotate(180deg) scale(1.08);
+  border-color: rgba(0, 242, 254, 0.5);
 }
 .about-visual .circle-container:hover .exp-badge {
-  transform: translate(15px, -15px);
+  transform: translate(10px, -10px);
   background: #00f2fe;
   color: #000;
+  box-shadow: 0 15px 30px rgba(0, 242, 254, 0.3);
 }
 .about-visual .profile-circle {
   width: 100%;
@@ -103,11 +110,11 @@
 }
 .about-visual .rotating-border {
   position: absolute;
-  inset: -0.5rem;
-  border: 1px solid rgba(0, 242, 254, 0.15);
+  inset: -0.625rem;
+  border: 1.5px dashed rgba(0, 242, 254, 0.2);
   border-radius: 50%;
   z-index: 1;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
   pointer-events: none;
 }
 .about-visual .rotating-border::after {
@@ -115,11 +122,12 @@
   position: absolute;
   top: 15%;
   right: 15%;
-  width: 0.625rem;
-  height: 0.625rem;
+  width: 0.75rem;
+  height: 0.75rem;
   background: #00f2fe;
   border-radius: 50%;
   box-shadow: 0 0 15px #00f2fe;
+  animation: pulseGlow 2s infinite ease-in-out;
 }
 .about-visual .exp-badge {
   position: absolute;
@@ -156,7 +164,7 @@
   font-size: clamp(3rem, 8vw, 5.75rem);
   font-weight: 800;
   color: #e2e8f0;
-  line-height: 1;
+  line-height: 0.95;
   margin-bottom: 2.5rem;
   letter-spacing: -0.25rem;
 }
@@ -164,6 +172,7 @@
   background: linear-gradient(90deg, #00f2fe, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
 }
 .about-content .bio-lead {
   font-size: 1.25rem;
@@ -171,7 +180,8 @@
   font-weight: 500;
   margin-bottom: 2.8125rem;
   padding-left: 1.25rem;
-  border-left: 2px solid rgba(0, 242, 254, 0.3);
+  border-left: 3px solid;
+  border-image: linear-gradient(to bottom, #00f2fe, transparent) 1;
 }
 @media (max-width: 992px) {
   .about-content .bio-lead {
@@ -199,10 +209,10 @@
   margin-top: 4.375rem;
 }
 .tech-stack .arsenal {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.3125rem;
-  color: rgb(182, 130, 130);
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 2.1875rem;
   font-weight: 800;
 }
@@ -217,6 +227,7 @@
   }
 }
 .tech-stack .stack-grid span {
+  position: relative;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 1.25rem 1.75rem;
@@ -228,6 +239,7 @@
   align-items: center;
   justify-content: space-between;
   transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
   cursor: default;
 }
 .tech-stack .stack-grid span i {
@@ -236,34 +248,37 @@
   transition: 0.4s ease;
   opacity: 0.7;
 }
+.tech-stack .stack-grid span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.08), transparent);
+  transition: 0.6s ease;
+}
 .tech-stack .stack-grid span:hover {
   background: rgba(0, 242, 254, 0.05);
   border-color: rgba(0, 242, 254, 0.3);
   transform: translateX(10px);
+}
+.tech-stack .stack-grid span:hover::before {
+  left: 100%;
 }
 .tech-stack .stack-grid span:hover i {
   transform: scale(1.2) rotate(10deg);
   opacity: 1;
 }
 
-.container {
-  max-width: 87.5rem;
-  margin: 0 auto;
-}
-
-@media (max-width: 992px) {
-  .about-visual {
-    position: relative;
-    top: 0;
-    margin-bottom: 3.125rem;
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
+    transform: scale(1);
   }
-  .about-content .about-title {
-    letter-spacing: -0.125rem;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .about-visual .rotating-border {
-    animation: slowRotate 25s linear infinite;
+  50% {
+    box-shadow: 0 0 20px #00f2fe, 0 0 40px #00f2fe;
+    transform: scale(1.2);
   }
 }
 @keyframes slowRotate {
@@ -274,20 +289,20 @@
     transform: rotate(360deg);
   }
 }
-::-webkit-scrollbar {
-  width: 8px;
+@media (prefers-reduced-motion: no-preference) {
+  .about-visual .rotating-border {
+    animation: slowRotate 30s linear infinite;
+  }
 }
-
-::-webkit-scrollbar-track {
-  background: #030508;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1a1e26;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00f2fe;
+@media (max-width: 992px) {
+  .about-visual {
+    position: relative;
+    top: 0;
+    margin-bottom: 3.125rem;
+  }
+  .about-content .about-title {
+    letter-spacing: -0.125rem;
+  }
 }
 
 /*# sourceMappingURL=about.css.map */

@@ -3,13 +3,13 @@
 
 .projects {
     padding: 100px 0;
-    
+
     .section-title {
         margin-bottom: 60px;
         text-align: center;
         font-size: 3rem;
         color: v.$text-main;
-        
+
         .highlight {
             background: v.$gradient;
             -webkit-background-clip: text;
@@ -52,9 +52,9 @@
         transform: translateY(-15px) scale(1.02);
         border-color: rgba(v.$primary, 0.5);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(v.$primary, 0.1);
-        
+
         &::after { opacity: 1; }
-        
+
         .project-icon i {
             transform: scale(1.2) rotate(10deg);
             color: v.$primary;

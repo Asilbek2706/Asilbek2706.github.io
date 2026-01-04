@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
 
+/**
+ * ASILBEK.DEV - PREMIUM ABOUT SECTION
+ * Professional Typography & Glassmorphism
+ */
+
 $font-premium: 'Plus Jakarta Sans', sans-serif;
 $clr-bg: #030508;
 $clr-card: #090c12;
@@ -11,7 +16,7 @@ $clr-accent: #00f2fe;
 $clr-text: #94a3b8;
 $clr-heading: #e2e8f0;
 
-// Silliqlik kaliti:
+// Animatsiya va Silliqlik:
 $ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 $transition-speed: 0.6s;
 
@@ -23,11 +28,12 @@ $transition-speed: 0.6s;
   overflow-x: hidden;
   position: relative;
 
+  // Orqa fondagi futuristik nur
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 0% 0%, rgba($clr-accent, 0.04) 0%, transparent 40%);
+    background: radial-gradient(circle at 0% 0%, rgba($clr-accent, 0.05) 0%, transparent 40%);
     pointer-events: none;
   }
 }
@@ -55,6 +61,7 @@ $transition-speed: 0.6s;
   }
 }
 
+// --- VISUAL PART (STICKY PROFILE) ---
 .about-visual {
   position: sticky;
   top: f.rem(120px);
@@ -69,6 +76,7 @@ $transition-speed: 0.6s;
     background: rgba(255, 255, 255, 0.01);
     border-radius: 50%;
     transition: $transition-speed $ease-smooth;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 
     @include m.respond-to("large") { width: f.rem(380px); height: f.rem(380px); }
     @include m.respond-to("mobile") { width: f.rem(300px); height: f.rem(300px); }
@@ -77,9 +85,20 @@ $transition-speed: 0.6s;
       transform: scale(1.02) translateY(-5px);
       background: rgba($clr-accent, 0.03);
 
-      .profile-circle { filter: saturate(1) contrast(1); }
-      .rotating-border { transform: rotate(180deg) scale(1.1); border-color: rgba($clr-accent, 0.4); }
-      .exp-badge { transform: translate(15px, -15px); background: $clr-accent; color: #000; }
+      .profile-circle {
+        filter: saturate(1.1) contrast(1.1);
+        box-shadow: 0 0 30px rgba($clr-accent, 0.2);
+      }
+      .rotating-border {
+        transform: rotate(180deg) scale(1.08);
+        border-color: rgba($clr-accent, 0.5);
+      }
+      .exp-badge {
+        transform: translate(10px, -10px);
+        background: $clr-accent;
+        color: #000;
+        box-shadow: 0 15px 30px rgba($clr-accent, 0.3);
+      }
     }
   }
 
@@ -97,11 +116,11 @@ $transition-speed: 0.6s;
 
   .rotating-border {
     position: absolute;
-    inset: f.rem(-8px);
-    border: 1px solid rgba($clr-accent, 0.15);
+    inset: f.rem(-10px);
+    border: 1.5px dashed rgba($clr-accent, 0.2); // Texnik/Radar ko'rinishi
     border-radius: 50%;
     z-index: 1;
-    transition: transform 1.2s $ease-smooth, border-color 0.6s ease;
+    transition: transform 1.5s $ease-smooth, border-color 0.6s ease;
     pointer-events: none;
 
     &::after {
@@ -109,11 +128,12 @@ $transition-speed: 0.6s;
       position: absolute;
       top: 15%;
       right: 15%;
-      width: f.rem(10px);
-      height: f.rem(10px);
+      width: f.rem(12px);
+      height: f.rem(12px);
       background: $clr-accent;
       border-radius: 50%;
       box-shadow: 0 0 15px $clr-accent;
+      animation: pulseGlow 2s infinite ease-in-out;
     }
   }
 
@@ -137,6 +157,7 @@ $transition-speed: 0.6s;
   }
 }
 
+// --- CONTENT PART ---
 .about-content {
   flex: 1;
 
@@ -144,7 +165,7 @@ $transition-speed: 0.6s;
     font-size: clamp(f.rem(48px), 8vw, f.rem(92px));
     font-weight: 800;
     color: $clr-heading;
-    line-height: 1;
+    line-height: 0.95;
     margin-bottom: f.rem(40px);
     letter-spacing: f.rem(-4px);
 
@@ -152,6 +173,7 @@ $transition-speed: 0.6s;
       background: linear-gradient(90deg, $clr-accent, #fff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba($clr-accent, 0.3));
     }
   }
 
@@ -161,7 +183,8 @@ $transition-speed: 0.6s;
     font-weight: 500;
     margin-bottom: f.rem(45px);
     padding-left: f.rem(20px);
-    border-left: 2px solid rgba($clr-accent, 0.3);
+    border-left: 3px solid;
+    border-image: linear-gradient(to bottom, $clr-accent, transparent) 1;
 
     @include m.respond-to("tablet") { border-left: none; padding-left: 0; }
   }
@@ -177,14 +200,15 @@ $transition-speed: 0.6s;
   }
 }
 
+// --- TECH STACK (SKILLS) ---
 .tech-stack {
   margin-top: f.rem(70px);
 
   .arsenal {
-    font-size: f.rem(20px);
+    font-size: f.rem(14px);
     text-transform: uppercase;
     letter-spacing: f.rem(5px);
-    color: rgb(182, 130, 130);
+    color: rgba(255, 255, 255, 0.4); // To'g'irlandi
     margin-bottom: f.rem(35px);
     font-weight: 800;
   }
@@ -196,6 +220,7 @@ $transition-speed: 0.6s;
     @include m.respond-to("mobile") { grid-template-columns: 1fr; }
 
     span {
+      position: relative;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
       padding: f.rem(20px) f.rem(28px);
@@ -207,35 +232,37 @@ $transition-speed: 0.6s;
       align-items: center;
       justify-content: space-between;
       transition: $transition-speed $ease-smooth;
+      overflow: hidden;
       cursor: default;
 
       i { font-size: f.rem(20px); color: $clr-accent; transition: 0.4s ease; opacity: 0.7; }
+
+      // Shine effekti
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba($clr-accent, 0.08), transparent);
+        transition: 0.6s ease;
+      }
 
       &:hover {
         background: rgba($clr-accent, 0.05);
         border-color: rgba($clr-accent, 0.3);
         transform: translateX(10px);
 
+        &::before { left: 100%; }
         i { transform: scale(1.2) rotate(10deg); opacity: 1; }
       }
     }
   }
 }
 
-.container {
-  max-width: f.rem(1400px);
-  margin: 0 auto;
-}
-
-@include m.respond-to("tablet") {
-  .about-visual { position: relative; top: 0; margin-bottom: f.rem(50px); }
-  .about-content .about-title { letter-spacing: f.rem(-2px); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .about-visual .rotating-border {
-    animation: slowRotate 25s linear infinite;
-  }
+// --- ANIMATIONS ---
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px $clr-accent, 0 0 20px $clr-accent; transform: scale(1); }
+  50% { box-shadow: 0 0 20px $clr-accent, 0 0 40px $clr-accent; transform: scale(1.2); }
 }
 
 @keyframes slowRotate {
@@ -243,7 +270,14 @@ $transition-speed: 0.6s;
   to { transform: rotate(360deg); }
 }
 
-// Custom Scrollbar
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: $clr-bg; }
-::-webkit-scrollbar-thumb { background: #1a1e26; border-radius: 10px; &:hover { background: $clr-accent; } }
+// Global sozlamalar
+@media (prefers-reduced-motion: no-preference) {
+  .about-visual .rotating-border {
+    animation: slowRotate 30s linear infinite;
+  }
+}
+
+@include m.respond-to("tablet") {
+  .about-visual { position: relative; top: 0; margin-bottom: f.rem(50px); }
+  .about-content .about-title { letter-spacing: f.rem(-2px); }
+}
