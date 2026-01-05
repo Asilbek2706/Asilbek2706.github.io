@@ -1,8 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
-/**
- * ASILBEK.DEV - PREMIUM ABOUT SECTION
- * Professional Typography & Glassmorphism
- */
 .about-page {
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: #030508;
@@ -55,7 +51,6 @@
   position: sticky;
   top: 7.5rem;
   flex-shrink: 0;
-  will-change: transform;
 }
 .about-visual .circle-container {
   position: relative;
@@ -64,8 +59,8 @@
   padding: 0.9375rem;
   background: rgba(255, 255, 255, 0.01);
   border-radius: 50%;
-  transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  transition: background 0.4s ease;
 }
 @media (max-width: large) {
   .about-visual .circle-container {
@@ -80,22 +75,16 @@
   }
 }
 .about-visual .circle-container:hover {
-  transform: scale(1.02) translateY(-5px);
   background: rgba(0, 242, 254, 0.03);
 }
 .about-visual .circle-container:hover .profile-circle {
-  filter: saturate(1.1) contrast(1.1);
-  box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+  filter: saturate(1) contrast(1.1);
 }
 .about-visual .circle-container:hover .rotating-border {
-  transform: rotate(180deg) scale(1.08);
-  border-color: rgba(0, 242, 254, 0.5);
+  border-color: rgba(0, 242, 254, 0.4);
 }
 .about-visual .circle-container:hover .exp-badge {
-  transform: translate(10px, -10px);
-  background: #00f2fe;
-  color: #000;
-  box-shadow: 0 15px 30px rgba(0, 242, 254, 0.3);
+  border-color: #00f2fe;
 }
 .about-visual .profile-circle {
   width: 100%;
@@ -103,7 +92,7 @@
   object-fit: cover;
   border-radius: 50%;
   filter: saturate(0.6) contrast(1.1);
-  transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.5s ease;
   border: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 2;
   position: relative;
@@ -111,23 +100,11 @@
 .about-visual .rotating-border {
   position: absolute;
   inset: -0.625rem;
-  border: 1.5px dashed rgba(0, 242, 254, 0.2);
+  border: 1.5px dashed rgba(0, 242, 254, 0.15);
   border-radius: 50%;
   z-index: 1;
-  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+  transition: border-color 0.6s ease;
   pointer-events: none;
-}
-.about-visual .rotating-border::after {
-  content: "";
-  position: absolute;
-  top: 15%;
-  right: 15%;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: #00f2fe;
-  border-radius: 50%;
-  box-shadow: 0 0 15px #00f2fe;
-  animation: pulseGlow 2s infinite ease-in-out;
 }
 .about-visual .exp-badge {
   position: absolute;
@@ -139,10 +116,10 @@
   padding: 1.125rem 1.75rem;
   border-radius: 6.25rem;
   font-weight: 800;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   z-index: 5;
   backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
 }
 .about-visual .exp-badge .year {
   font-size: 1.375rem;
@@ -172,7 +149,6 @@
   background: linear-gradient(90deg, #00f2fe, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
 }
 .about-content .bio-lead {
   font-size: 1.25rem;
@@ -182,12 +158,6 @@
   padding-left: 1.25rem;
   border-left: 3px solid;
   border-image: linear-gradient(to bottom, #00f2fe, transparent) 1;
-}
-@media (max-width: 992px) {
-  .about-content .bio-lead {
-    border-left: none;
-    padding-left: 0;
-  }
 }
 .about-content .bio-story p {
   font-size: 1.1875rem;
@@ -227,81 +197,33 @@
   }
 }
 .tech-stack .stack-grid span {
-  position: relative;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 1.25rem 1.75rem;
-  border-radius: 1.25rem;
+  border-radius: 0.75rem;
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-  cursor: default;
+  transition: 0.3s ease;
 }
 .tech-stack .stack-grid span i {
   font-size: 1.25rem;
   color: #00f2fe;
-  transition: 0.4s ease;
   opacity: 0.7;
-}
-.tech-stack .stack-grid span::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.08), transparent);
-  transition: 0.6s ease;
 }
 .tech-stack .stack-grid span:hover {
   background: rgba(0, 242, 254, 0.05);
   border-color: rgba(0, 242, 254, 0.3);
-  transform: translateX(10px);
-}
-.tech-stack .stack-grid span:hover::before {
-  left: 100%;
-}
-.tech-stack .stack-grid span:hover i {
-  transform: scale(1.2) rotate(10deg);
-  opacity: 1;
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 20px #00f2fe, 0 0 40px #00f2fe;
-    transform: scale(1.2);
-  }
-}
-@keyframes slowRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .about-visual .rotating-border {
-    animation: slowRotate 30s linear infinite;
-  }
-}
 @media (max-width: 992px) {
   .about-visual {
     position: relative;
     top: 0;
     margin-bottom: 3.125rem;
-  }
-  .about-content .about-title {
-    letter-spacing: -0.125rem;
   }
 }
 
