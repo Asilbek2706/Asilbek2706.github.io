@@ -201,6 +201,46 @@ body.no-scroll {
     transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Neon Cursor Base */
+.neon-cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #0dcaf0;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #0dcaf0, 0 0 20px #0dcaf0;
+    animation: pulseGlow 1.5s infinite alternate;
+    display: block; /* Desktopda ko'rinadi */
+}
+
+.neon-cursor.cursor-hover {
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: 2px solid #0dcaf0;
+    box-shadow: 0 0 15px #0dcaf0;
+}
+
+@keyframes pulseGlow {
+    from {
+        box-shadow: 0 0 5px #0dcaf0, 0 0 10px #0dcaf0;
+        opacity: 0.8;
+    }
+    to {
+        box-shadow: 0 0 15px #0dcaf0, 0 0 30px #0dcaf0, 0 0 40px #0dcaf0;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 992px) {
+    .neon-cursor {
+        display: none !important;
+    }
+}
+
 
 /* --- FOOTER CORE --- */
 .footer {
