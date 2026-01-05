@@ -1,11 +1,6 @@
 @use '../abstracts/variables' as v;
 
-/**
- * ABOUT PAGE - ULTRA CLEAN CYBERNETIC STYLE
- * Engineering Focus: Hover-driven geometry, no rotation.
- * Features: Interactive Grid, 3D Hover, Glassmorphism.
- */
-
+// --- CONFIG ---
 $clr-neon: #00f2fe;
 $clr-dark-edge: #0a0c10;
 $clr-glass-border: rgba(255, 255, 255, 0.08);
@@ -16,11 +11,11 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   background: #020408;
   color: #e2e8f0;
   font-family: $font-jakarta;
-  padding: clamp(80px, 12vh, 150px) 0;
+  padding: clamp(60px, 10vh, 120px) 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
 
-  // Background Grid System (Static & Clean)
   &::before {
     content: ''; position: absolute; inset: 0;
     background-image: linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
@@ -31,38 +26,50 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .about-wrapper {
-  display: flex; gap: 100px; align-items: flex-start;
-  position: relative; z-index: 10;
+  display: flex;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center; // Rasm va matnni bir xil o'rtaga oladi
+  position: relative;
+  z-index: 10;
+
+  // 1200px KONTEYNERNI TOGIRLASH
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 
   @media (max-width: 992px) {
-    flex-direction: column; align-items: center; gap: 60px;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    text-align: center;
   }
 }
 
-// --- VISUAL ARCHITECTURE (NO ROTATION) ---
+// --- VISUAL ARCHITECTURE (EFFEKTLAR BILAN) ---
 .about-visual {
   flex-shrink: 0;
 
   .circle-container {
     position: relative;
-    width: 380px; height: 380px;
+    width: clamp(280px, 30vw, 380px); // Dynamic o'lcham
+    height: clamp(280px, 30vw, 380px);
     background: $clr-dark-edge;
-    border-radius: 40px; // Aylanadan voz kechib, modern burchakli radiusga o'tdik
-    padding: 10px;
+    border-radius: 40px;
+    padding: 12px;
     border: 1px solid $clr-glass-border;
     transition: $transition-logic;
+
     @media (max-width: 992px) {
-      .circle-container {
-        width: 200px; height: 200px;
-      }
+      width: 280px; height: 280px;
     }
 
-    // Static Geometric Decoration
+    // Static Geometric Borders (Static qolsin deganding)
     &::before, &::after {
       content: ''; position: absolute;
       width: 40px; height: 40px;
       border: 2px solid $clr-neon;
       transition: $transition-logic;
+      z-index: 5;
     }
     &::before { top: -10px; left: -10px; border-right: 0; border-bottom: 0; }
     &::after { bottom: -10px; right: -10px; border-left: 0; border-top: 0; }
@@ -74,37 +81,37 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       filter: saturate(0.8);
       transition: $transition-logic;
       opacity: 0;
-
       &.loaded { opacity: 1; }
     }
 
+    // BADGE HOVER EFFEKTI (SAQLANDI)
     .exp-badge {
       position: absolute; bottom: 30px; left: -20px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(10px);
       border: 1px solid $clr-neon;
       padding: 12px 24px; border-radius: 12px;
       display: flex; flex-direction: column;
+      z-index: 10;
+      transition: $transition-logic;
+
+      @media (max-width: 992px) {
+        left: 50%; transform: translateX(-50%);
+        bottom: -20px;
+      }
 
       .year { font-weight: 900; color: $clr-neon; font-size: 1.5rem; line-height: 1; }
-      &::after { content: 'EST. SINCE'; font-size: 0.6rem; letter-spacing: 2px; color: #475569; }
+      &::after { content: 'EST. 2026'; font-size: 0.6rem; letter-spacing: 2px; color: #475569; }
+
       &:hover {
         transform: scale(1.1) translateX(10px);
         box-shadow: 0 0 30px rgba($clr-neon, 0.4);
         border-color: #fff;
-
-        &::before {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-
-        .year {
-          color: #fff;
-          text-shadow: 0 0 10px $clr-neon;
-        }
+        .year { color: #fff; text-shadow: 0 0 10px $clr-neon; }
       }
     }
 
+    // IMAGE HOVER EFFEKTI (SAQLANDI)
     &:hover {
       transform: translateY(-10px);
       border-color: rgba($clr-neon, 0.5);
@@ -112,14 +119,21 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
       &::before { top: 10px; left: 10px; }
       &::after { bottom: 10px; right: 10px; }
-
       .profile-circle { filter: saturate(1.1); transform: scale(1.02); }
     }
   }
 }
 
-// --- CONTENT ARCHITECTURE ---
+// --- CONTENT ARCHITECTURE (EFFEKTLAR BILAN) ---
 .about-content {
+  flex: 1;
+
+  .about-title {
+    font-size: clamp(2.2rem, 4vw, 3.8rem); // Text hajmi endi dynamic
+    font-weight: 900; letter-spacing: -2px; margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
   .highlight {
     background: linear-gradient(90deg, #fff, $clr-neon);
     -webkit-background-clip: text;
@@ -127,51 +141,53 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     font-weight: 800;
   }
 
-  .about-title {
-    font-size: 4rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px;
-  }
-
   .bio-lead {
-    font-size: 1.25rem; color: $clr-neon; font-weight: 600;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    color: $clr-neon; font-weight: 600;
     text-transform: uppercase; letter-spacing: 3px;
     margin-bottom: 35px; display: block;
-
     &::before { content: '// '; opacity: 0.5; }
   }
 
   .bio-story {
     background: rgba(255, 255, 255, 0.02);
-    border-left: 2px solid $clr-glass-border;
+    border-left: 3px solid $clr-neon; // Rangni neon qildim yanada chiroyli bo'lishi uchun
     padding: 30px; border-radius: 0 20px 20px 0;
     margin-bottom: 45px;
     transition: $transition-logic;
 
-    p { font-size: 1.15rem; line-height: 1.8; color: #94a3b8; margin: 0; }
+    p { font-size: 1.1rem; line-height: 1.8; color: #94a3b8; margin: 0; }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-left-color: $clr-neon;
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(10px);
     }
   }
 
-  // ARSENAL GRID (INTERACTIVE)
+  // ARSENAL GRID (BARCHA HOVERLAR JOYIDA)
   .tech-stack {
     .arsenal {
-      font-size: 1.3rem; letter-spacing: 5px; color: linear-gradient(90deg, #fff, $clr-neon);
+      font-size: 1.1rem; letter-spacing: 5px;
+      color: $clr-neon;
+      text-transform: uppercase;
       display: block; margin-bottom: 25px;
     }
 
     .stack-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+
       @media (max-width: 576px) { grid-template-columns: 1fr 1fr; }
 
       span {
         padding: 16px 20px; border-radius: 14px;
         background: #0f172a; border: 1px solid $clr-glass-border;
         display: flex; align-items: center; gap: 12px;
-        font-weight: 700; font-size: 0.95rem; color: #cbd5e1;
+        font-weight: 700; font-size: 0.9rem; color: #cbd5e1;
         transition: $transition-logic;
         position: relative; overflow: hidden;
+        cursor: pointer;
 
         &::before {
           content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 0;
@@ -182,25 +198,13 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
         &:hover {
           background: #1e293b; color: #fff;
-          transform: translateX(8px);
-          border-color: rgba($clr-neon, 0.3);
+          transform: translateY(-5px);
+          border-color: rgba($clr-neon, 0.5);
 
           &::before { height: 100%; }
-          i { transform: scale(1.2); color: $clr-neon; }
+          i { transform: scale(1.2) rotate(10deg); color: $clr-neon; }
         }
       }
     }
   }
-}
-
-// --- SKELETON LOAD (Rasm ochilgunicha turadigan joy) ---
-.circle-container.loading {
-  background: linear-gradient(90deg, #0a0c10 25%, #161b22 50%, #0a0c10 75%);
-  background-size: 200% 100%;
-  animation: skeletonPulse 1.5s infinite;
-}
-
-@keyframes skeletonPulse {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }

@@ -1,15 +1,11 @@
-/**
- * ABOUT PAGE - ULTRA CLEAN CYBERNETIC STYLE
- * Engineering Focus: Hover-driven geometry, no rotation.
- * Features: Interactive Grid, 3D Hover, Glassmorphism.
- */
 .about-page {
   background: #020408;
   color: #e2e8f0;
   font-family: "Plus Jakarta Sans", sans-serif;
-  padding: clamp(80px, 12vh, 150px) 0;
+  padding: clamp(60px, 10vh, 120px) 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 .about-page::before {
   content: "";
@@ -22,16 +18,20 @@
 
 .about-wrapper {
   display: flex;
-  gap: 100px;
-  align-items: flex-start;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
   position: relative;
   z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 @media (max-width: 992px) {
   .about-wrapper {
     flex-direction: column;
     align-items: center;
     gap: 60px;
+    text-align: center;
   }
 }
 
@@ -40,18 +40,18 @@
 }
 .about-visual .circle-container {
   position: relative;
-  width: 380px;
-  height: 380px;
+  width: clamp(280px, 30vw, 380px);
+  height: clamp(280px, 30vw, 380px);
   background: #0a0c10;
   border-radius: 40px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 @media (max-width: 992px) {
-  .about-visual .circle-container .circle-container {
-    width: 200px;
-    height: 200px;
+  .about-visual .circle-container {
+    width: 280px;
+    height: 280px;
   }
 }
 .about-visual .circle-container::before, .about-visual .circle-container::after {
@@ -61,6 +61,7 @@
   height: 40px;
   border: 2px solid #00f2fe;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 5;
 }
 .about-visual .circle-container::before {
   top: -10px;
@@ -90,13 +91,22 @@
   position: absolute;
   bottom: 30px;
   left: -20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   border: 1px solid #00f2fe;
   padding: 12px 24px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+@media (max-width: 992px) {
+  .about-visual .circle-container .exp-badge {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+  }
 }
 .about-visual .circle-container .exp-badge .year {
   font-weight: 900;
@@ -105,7 +115,7 @@
   line-height: 1;
 }
 .about-visual .circle-container .exp-badge::after {
-  content: "EST. SINCE";
+  content: "EST. 2026";
   font-size: 0.6rem;
   letter-spacing: 2px;
   color: #475569;
@@ -114,10 +124,6 @@
   transform: scale(1.1) translateX(10px);
   box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
   border-color: #fff;
-}
-.about-visual .circle-container .exp-badge:hover::before {
-  opacity: 1;
-  transform: scale(1.2);
 }
 .about-visual .circle-container .exp-badge:hover .year {
   color: #fff;
@@ -141,20 +147,24 @@
   transform: scale(1.02);
 }
 
+.about-content {
+  flex: 1;
+}
+.about-content .about-title {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
 .about-content .highlight {
   background: linear-gradient(90deg, #fff, #00f2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
-.about-content .about-title {
-  font-size: 4rem;
-  font-weight: 900;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
-}
 .about-content .bio-lead {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   color: #00f2fe;
   font-weight: 600;
   text-transform: uppercase;
@@ -168,32 +178,33 @@
 }
 .about-content .bio-story {
   background: rgba(255, 255, 255, 0.02);
-  border-left: 2px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid #00f2fe;
   padding: 30px;
   border-radius: 0 20px 20px 0;
   margin-bottom: 45px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .about-content .bio-story p {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #94a3b8;
   margin: 0;
 }
 .about-content .bio-story:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-left-color: #00f2fe;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(10px);
 }
 .about-content .tech-stack .arsenal {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   letter-spacing: 5px;
-  color: linear-gradient(90deg, #fff, #00f2fe);
+  color: #00f2fe;
+  text-transform: uppercase;
   display: block;
   margin-bottom: 25px;
 }
 .about-content .tech-stack .stack-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 15px;
 }
 @media (max-width: 576px) {
@@ -210,11 +221,12 @@
   align-items: center;
   gap: 12px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #cbd5e1;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .about-content .tech-stack .stack-grid span::before {
   content: "";
@@ -233,30 +245,15 @@
 .about-content .tech-stack .stack-grid span:hover {
   background: #1e293b;
   color: #fff;
-  transform: translateX(8px);
-  border-color: rgba(0, 242, 254, 0.3);
+  transform: translateY(-5px);
+  border-color: rgba(0, 242, 254, 0.5);
 }
 .about-content .tech-stack .stack-grid span:hover::before {
   height: 100%;
 }
 .about-content .tech-stack .stack-grid span:hover i {
-  transform: scale(1.2);
+  transform: scale(1.2) rotate(10deg);
   color: #00f2fe;
-}
-
-.circle-container.loading {
-  background: linear-gradient(90deg, #0a0c10 25%, #161b22 50%, #0a0c10 75%);
-  background-size: 200% 100%;
-  animation: skeletonPulse 1.5s infinite;
-}
-
-@keyframes skeletonPulse {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
 }
 
 /*# sourceMappingURL=about.css.map */
