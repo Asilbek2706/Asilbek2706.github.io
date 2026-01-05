@@ -48,6 +48,12 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+@media (max-width: 992px) {
+  .about-visual .circle-container .circle-container {
+    width: 200px;
+    height: 200px;
+  }
+}
 .about-visual .circle-container::before, .about-visual .circle-container::after {
   content: "";
   position: absolute;
@@ -103,6 +109,19 @@
   font-size: 0.6rem;
   letter-spacing: 2px;
   color: #475569;
+}
+.about-visual .circle-container .exp-badge:hover {
+  transform: scale(1.1) translateX(10px);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+  border-color: #fff;
+}
+.about-visual .circle-container .exp-badge:hover::before {
+  opacity: 1;
+  transform: scale(1.2);
+}
+.about-visual .circle-container .exp-badge:hover .year {
+  color: #fff;
+  text-shadow: 0 0 10px #00f2fe;
 }
 .about-visual .circle-container:hover {
   transform: translateY(-10px);

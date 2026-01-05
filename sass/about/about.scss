@@ -51,6 +51,11 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     padding: 10px;
     border: 1px solid $clr-glass-border;
     transition: $transition-logic;
+    @media (max-width: 992px) {
+      .circle-container {
+        width: 200px; height: 200px;
+      }
+    }
 
     // Static Geometric Decoration
     &::before, &::after {
@@ -68,7 +73,7 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       border-radius: 32px;
       filter: saturate(0.8);
       transition: $transition-logic;
-      opacity: 0; // JS orqali silliq ochiladi
+      opacity: 0;
 
       &.loaded { opacity: 1; }
     }
@@ -83,6 +88,21 @@ $transition-logic: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
       .year { font-weight: 900; color: $clr-neon; font-size: 1.5rem; line-height: 1; }
       &::after { content: 'EST. SINCE'; font-size: 0.6rem; letter-spacing: 2px; color: #475569; }
+      &:hover {
+        transform: scale(1.1) translateX(10px);
+        box-shadow: 0 0 30px rgba($clr-neon, 0.4);
+        border-color: #fff;
+
+        &::before {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+
+        .year {
+          color: #fff;
+          text-shadow: 0 0 10px $clr-neon;
+        }
+      }
     }
 
     &:hover {
