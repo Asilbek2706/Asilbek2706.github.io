@@ -1,7 +1,3 @@
-/**
- * ASILBEK.DEV - SKILLS ENGINE LOGIC v2.5
- * Refined: Performance & Mobile Compatibility
- */
 
 "use strict";
 
@@ -102,5 +98,6 @@ const SkillsEngine = {
         });
     }
 };
+
 
 document.addEventListener('DOMContentLoaded', () => SkillsEngine.init());
