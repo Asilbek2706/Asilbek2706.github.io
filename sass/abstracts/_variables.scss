@@ -1,9 +1,10 @@
-$primary: #00f2fe;        
-$secondary: #7000ff;      
-$bg-deep: #020205;       
-$text-main: #ffffff;
-$text-dim: #b0b0b0;
-$glass-bg: rgba(255, 255, 255, 0.03);
-$glass-border: rgba(255, 255, 255, 0.1);
-$gradient: linear-gradient(135deg, $primary, $secondary);
-$transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+// --- 1. O'zgaruvchilar (Variables) ---
+$primary-color: #4770ff;
+$primary-soft: rgba(71, 112, 255, 0.1);
+$text-dark: #1a1a1a;
+$text-muted: #666;
+$bg-light: #f8f9fa;
+$bg-glass: rgba(255, 255, 255, 0.7);
+$white: #ffffff;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$border-radius: 24px;

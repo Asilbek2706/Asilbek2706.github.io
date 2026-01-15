@@ -1,56 +1,317 @@
-// 1. ABSTRACTS (Faqat bularni chaqiramiz)
-@use 'abstracts/variables' as v;
-@use 'abstracts/mixins' as m;
+@use "layout/navbar";
+@use "abstracts/variables" as v;
 
-// 2. BASE (Global stillar)
-@use 'base/base';
+// --- 1. Global Reset & Base Styles ---
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa; // Bir oz yumshoqroq fon
+  color: v.$text-dark;
+  overflow-x: hidden;
+  padding-top: 110px;
+  line-height: 1.6;
 
-// 3. LAYOUT & COMPONENTS (Hammasi @use bilan)
-@use 'layout/navbar';
-@use 'layout/hero';
-@use 'layout/contact';
-@use 'layout/footer';
-@use 'components/buttons';
-@use 'components/cards';
-@use 'components/projects';
+  @media (max-width: 991px) {
+    padding-top: 90px;
+  }
+}
 
+main.container {
+  max-width: 1320px;
+  margin-bottom: 50px;
+}
+
+// Background Decorations (GPU optimallashgan)
+.background-decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  .shape {
+    position: absolute;
+    filter: blur(100px);
+    opacity: 0.25;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .shape-1 {
+    width: clamp(200px, 40vw, 400px);
+    height: clamp(200px, 40vw, 400px);
+    background: v.$primary-color;
+    top: -100px;
+    right: -100px;
+  }
+
+  .shape-2 {
+    width: clamp(150px, 30vw, 300px);
+    height: clamp(150px, 30vw, 300px);
+    background: #00d2ff;
+    bottom: 5%;
+    left: -80px;
+  }
+}
+
+// --- 2. Bento Card System ---
+.bento-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 24px; // Bento uslubi uchun kattaroq radius
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 100%;
+  padding: 1.75rem;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: rgba(v.$primary-color, 0.2);
+  }
+
+  @media (max-width: 576px) {
+    padding: 1.5rem;
+  }
+}
+
+// --- 3. Profile Section ---
+.profile-main {
+  .img-wrapper {
+    border-radius: 20px;
+    background: #f1f3f5;
+    overflow: hidden;
+
+    .profile-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+
+      &:hover { transform: scale(1.05); }
+    }
+  }
+}
+
+// --- 4. Technical Arsenal (Swiper & Grid) ---
+// --- Technical Arsenal Bento Section ---
+.skillsSwiper {
+  width: 100%;
+  padding: 10px 0 45px 0 !important;
+  position: relative;
+
+  .swiper-wrapper {
+    // Desktopda (992px+) bento grid ko'rinishi
+    @media (min-width: 992px) {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr); // 2 ustunli grid
+      gap: 12px;
+      transform: none !important;
+      width: 100% !important;
+    }
+  }
+
+  .swiper-slide {
+    width: auto;
+    display: flex;
+    height: auto;
+
+    @media (max-width: 991px) {
+      width: 140px; // Mobilda slayd kengligi
+      margin-right: 12px;
+    }
+
+    @media (min-width: 992px) {
+      width: 100% !important; // Desktopda grid katagiga moslashadi
+      margin-right: 0 !important;
+    }
+  }
+
+  // Swiper pagination (nuqtachalar) - Bento dizaynga mos
+  .swiper-pagination {
+    bottom: 0 !important;
+
+    &-bullet {
+      width: 8px;
+      height: 8px;
+      background: v.$primary-color;
+      opacity: 0.2;
+      transition: all 0.3s ease;
+
+      &-active {
+        opacity: 1;
+        width: 24px; // Uzunroq pill shakli
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.skill-pill {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6); // Shaffofroq bento effekti
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px; // Bento yumshoqligi
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column; // Ikonka (nuqta) va matn tepma-tepa yoki yonma-yon
+  align-items: flex-start;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  color: v.$text-dark;
+  font-weight: 600;
+  font-size: 0.85rem;
+
+  // Kichik indikator nuqtasi
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: v.$primary-color;
+    border-radius: 50%;
+    display: block;
+  }
+
+  &:hover {
+    background: v.$white;
+    border-color: rgba(v.$primary-color, 0.3);
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    color: v.$primary-color;
+
+    &::before {
+      box-shadow: 0 0 10px v.$primary-color;
+    }
+  }
+}
+
+// Kartochka sarlavhasi uchun qo'shimcha bezak
+.bento-card h5 {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::after {
+    content: '•';
+    color: v.$primary-color;
+    font-size: 1.5rem;
+  }
+}
+// --- 5. Project Card System ---
+.project-wrapper {
+  background: v.$white;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+
+  .project-img-container {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f8f9fa;
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px; // Rasm chetidan biroz ichkarida (full ko'rinishi uchun)
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; // Rasm hamma joyi ko'rinadi
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &:hover {
+    border-color: rgba(v.$primary-color, 0.2) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+
+    .project-img-container img {
+      transform: scale(1.1); // Hoverda rasm ichkaridan kattalashadi
+    }
+  }
+}
+
+// --- 6. Education Timeline ---
+.exp-timeline {
+  .exp-item {
+    position: relative;
+    padding-left: 10px;
+
+    .badge {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+    }
+
+    h6 { font-size: 1.05rem; }
+  }
+}
+
+// --- 7. Neon Cursor & UI Elements ---
 .neon-cursor {
-  width: 8px;
-  height: 8px;
-  background-color: #0dcaf0;
+  width: 25px;
+  height: 25px;
+  background: rgba(v.$primary-color, 0.4);
+  border: 2px solid v.$primary-color;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
+  transition: width 0.3s, height 0.3s, background 0.3s;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
+  box-shadow: 0 0 20px v.$primary-color;
 
-  box-shadow: 0 0 10px #0dcaf0, 0 0 20px #0dcaf0, 0 0 30px #0dcaf0;
-  animation: pulseGlow 1.5s infinite alternate;
-}
-
-.neon-cursor.cursor-hover {
-  width: 25px;
-  height: 25px;
-  background-color: transparent;
-  border: 2px solid #0dcaf0;
-  box-shadow: 0 0 15px #0dcaf0; /* Hoverda glow biroz o'zgaradi */
-}
-
-@keyframes pulseGlow {
-  from {
-    box-shadow: 0 0 5px #0dcaf0, 0 0 10px #0dcaf0;
-    opacity: 0.8;
-  }
-  to {
-    box-shadow: 0 0 15px #0dcaf0, 0 0 30px #0dcaf0, 0 0 40px #0dcaf0;
-    opacity: 1;
+  &.cursor-hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(v.$primary-color, 0.1);
+    border-width: 1px;
   }
 }
 
-@media (max-width: 992px) {
-  .neon-cursor {
-    display: none !important;
+.social-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f1f3f5;
+  color: v.$text-dark;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: v.$primary-color;
+    color: v.$white;
+    transform: translateY(-5px) rotate(-8deg);
+    box-shadow: 0 10px 20px rgba(v.$primary-color, 0.2);
   }
 }
 
+// --- 8. Responsive Fixes ---
+@media (max-width: 768px) {
+  .exp-item {
+    flex-direction: column;
+    gap: 12px !important;
+
+    .badge { width: fit-content; }
+  }
+
+  .skillsSwiper {
+    .swiper-slide { width: 130px; } // Mobilda qat'iy kenglik carousel uchun
+  }
+
+  .profile-main {
+    padding: 2rem 1.5rem;
+    .social-links { justify-content: center !important; }
+  }
+}

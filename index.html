@@ -3,270 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asilbek Karomatov | Frontend Architect & Senior React Engineer</title>
-    <meta name="title" content="Asilbek Karomatov | Frontend Architect & Senior React Engineer">
-    <meta name="description" content="Professional portfolio of Asilbek Karomatov. Specializing in high-performance UI/UX, React ecosystems, and Django integration.">
-    <meta name="keywords" content="Asilbek Karomatov, Frontend Developer, React Engineer, Web Architect, Portfolio, Uzbekistan Developer">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
+
+    <title>Asilbek Karomatov | Frontend Architect & Backend Developer</title>
+    <meta name="description" content="Portfolio of Asilbek Karomatov - 2nd-year CS student at Acharya University. Specialized in React, Golang, and Redis. Building futuristic and high-performance web systems.">
+    <meta name="keywords" content="Asilbek Karomatov, Frontend Architect, React Engineer, Acharya University, Golang Developer, Redis, Karakol, Web Development Uzbekistan">
     <meta name="author" content="Asilbek Karomatov">
+    <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://asilbek2706.github.io/">
-    <meta property="og:title" content="Asilbek Karomatov | Frontend Architect">
-    <meta property="og:description" content="Building scalable, accessible, and high-performance web applications with modern technologies.">
-    <link rel="icon" type="image/png" href="images/men.jpg">
+    <meta property="og:url" content="https://github.com/Asilbek2706">
+    <meta property="og:title" content="Asilbek Karomatov | Frontend Architect Portfolio">
+    <meta property="og:description" content="Building modern, optimized architectures. 2nd-year student at Acharya University Uzbekistan.">
+    <meta property="og:image" content="./images/men.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Asilbek Karomatov | Dev Portfolio">
+    <meta property="twitter:description" content="Specializing in React, Golang and modern UI/UX.">
+    <meta property="twitter:image" content="./images/men.jpg">
+
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="./css/shared.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="navbar navbar-expand-lg">
-    <div class="container header-container">
-        <div class="logo">
-            <a href="./index.html">Asilbek<span>.dev</span></a>
-        </div>
+<div class="background-decor">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="glass-overlay"></div>
+</div>
 
-        <button class="navbar-toggler custom-toggler border-0" type="button">
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-        </button>
-
-        <nav class="collapse navbar-collapse nav-menu" id="asilbekNav">
-            <ul class="navbar-nav mx-auto">
-                <li><a href="./index.html" class="nav-link active"><i class="bi bi-house-door me-1"></i> Home</a></li>
-                <li><a href="./structure/about.html" class="nav-link"><i class="bi bi-person-badge me-1"></i> About</a></li>
-                <li><a href="./structure/skills.html" class="nav-link"><i class="bi bi-lightning-charge me-1"></i> Skills</a></li>
-                <li><a href="./structure/projects.html" class="nav-link"><i class="bi bi-stack me-1"></i> Projects</a></li>
-                <li><a href="./structure/contact.html" class="nav-link"><i class="bi bi-chat-dots me-1"></i> Contact</a></li>
-            </ul>
-
-            <div class="header-socials mobile-socials d-lg-none">
-                <a href="https://github.com/Asilbek2706" target="_blank"><i class="bi bi-github"></i></a>
-                <a href="https://t.me/as1lbek_2706" target="_blank"><i class="bi bi-send-fill"></i></a>
-            </div>
-        </nav>
-
-        <div class="header-socials d-none d-lg-flex">
-            <a href="https://github.com/Asilbek2706" target="_blank"><i class="bi bi-github"></i></a>
+<nav class="navbar-custom">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            Asilbek<span>.dev</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link active"><i class="bi bi-house-door"></i> Home</a></li>
+            <li><a href="./structure/about.html" class="nav-link"><i class="bi bi-person"></i> About</a></li>
+            <li><a href="./structure/projects.html" class="nav-link"><i class="bi bi-grid"></i> Portfolio</a></li>
+            <li><a href="./structure/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="./structure/contact.html" class="btn-talk">Let's talk</a>
+            <button class="mobile-toggle" id="mobile-menu-btn">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
     </div>
-</header>
+</nav>
 
-<main>
-    <section id="home" class="hero section-padding">
-        <div class="container hero-grid">
-            <div class="hero-content" data-aos="fade-up">
-                    <span class="badge rounded-pill bg-dark border border-info mb-3">
-                        <i class="bi bi-stars text-info me-1"></i> Welcome to my universe
-                    </span>
-                <h1 class="glitch-text">I'm Asilbek <span class="highlight">Karomatov</span></h1>
-                <div class="typewriter-container">
-                    <span id="typewriter"></span><span class="cursor">|</span>
+<main class="container mt-5 pt-5 pb-5">
+    <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up">
+            <div class="bento-card profile-main p-4 text-center text-lg-start h-100">
+                <div class="img-wrapper mb-4 overflow-hidden rounded-4 shadow-sm">
+                    <img src="./images/men.jpg" alt="Asilbek Karomatov" class="img-fluid profile-img">
                 </div>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary px-4 py-2">See My Work <i class="bi bi-arrow-right-short ms-1"></i></a>
-                    <a href="structure/contact.html" class="btn btn-outline-light px-4 py-2 ms-md-2">Let's Talk <i class="bi bi-chat-dots ms-1"></i></a>
+                <div class="profile-info">
+                    <h2 class="fw-bold h4">Asilbek Karomatov 👋</h2>
+                    <p class="text-muted small">Confident <b>Frontend Architect</b> 🖥️ Specializing in building modern and optimized architectures.</p>
                 </div>
-            </div>
-            <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="200">
-                <div class="image-border">
-                    <img src="./images/men.jpg" alt="Asilbek Karomatov" class="my-photo">
-                    <div class="glow-effect"></div>
+                <div class="d-grid gap-2 mt-4">
+                    <a href="https://t.me/as1lbek_2706" target="_blank" class="btn btn-primary py-2 rounded-3 fw-semibold shadow-blue">Let's Talk</a>
+                    <a href="mailto:asiloke797@gmail.com" class="btn btn-outline-dark py-2 rounded-3 fw-semibold">Send Email</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="skills section-padding">
-        <div class="container">
-            <h2 class="section-title text-center mb-5" data-aos="fade-up">Technical <span class="highlight">Arsenal</span></h2>
-
-            <div class="skills-grid">
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-patch-check-fill" style="font-size: 3rem; color: #61dafb;"></i>
-                    </div>
-                    <h3>React.js</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-shield-lock-fill" style="font-size: 3rem; color: #3178c6;"></i>
-                    </div>
-                    <h3>TypeScript</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-lightning-charge-fill" style="font-size: 3rem; color: #f7df1e;"></i>
-                    </div>
-                    <h3>JavaScript</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 92%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-terminal-fill" style="font-size: 3rem; color: #3776ab;"></i>
-                    </div>
-                    <h3>Python</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-cpu-fill" style="font-size: 3rem; color: #a8b9cc;"></i>
-                    </div>
-                    <h3>C Language</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-palette-fill" style="font-size: 3rem; color: #cc6699;"></i>
-                    </div>
-                    <h3>SASS / SCSS</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-code-slash" style="font-size: 3rem; color: #e34f26;"></i>
-                    </div>
-                    <h3>HTML5</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="450">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-layers-fill" style="font-size: 3rem; color: #1572b6;"></i>
-                    </div>
-                    <h3>CSS3</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
-                </div>
-
-                <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="skill-icon-box mb-3">
-                        <i class="bi bi-database-fill" style="font-size: 3rem; color: #003b57;"></i>
-                    </div>
-                    <h3>SQLite3</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+                <div class="social-links d-flex justify-content-between mt-4">
+                    <a href="https://t.me/as1lbek_2706" target="_blank" class="social-icon"><i class="bi bi-send-fill"></i></a>
+                    <a href="https://instagram.com/as1lbek_2706" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="https://github.com/Asilbek2706" target="_blank" class="social-icon"><i class="bi bi-github"></i></a>
+                    <a href="https://www.linkedin.com/in/asilbek-karomatov-91336b33b" target="_blank" class="social-icon"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="projects" class="projects section-padding">
-        <div class="container">
-            <h2 class="section-title text-center mb-5" data-aos="fade-up">Selected <span class="highlight">Works</span></h2>
-            <div class="projects-grid">
-                <article class="project-card" data-aos="fade-up">
-                    <div class="project-icon"><i class="bi bi-layers-half"></i></div>
-                    <div class="project-info">
-                        <h3>SASS Architecture</h3>
-                        <p>Professional folder structure using @use and advanced mixins.</p>
-                        <div class="mt-4">
-                            <a href="https://github.com/Asilbek2706/SASS-project" class="btn-glow" target="_blank">View Code <i class="bi bi-github ms-1"></i></a>
+        <div class="col-lg-8">
+            <div class="row g-4">
+                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bento-card p-4 h-100">
+                        <h5 class="fw-bold mb-4 d-flex align-items-center gap-2">
+                            <i class="bi bi-mortarboard text-primary"></i> Education
+                        </h5>
+                        <div class="exp-timeline">
+                            <div class="exp-item d-flex gap-3 mb-4">
+                                <span class="badge bg-light text-dark align-self-start py-2">2024 — 2028</span>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Acharya University Uzbekistan</h6>
+                                    <p class="small text-primary mb-1 fw-semibold">B.S. in Computer Science & Engineering</p>
+                                    <p class="small text-muted mb-0">Currently a 2nd-year student (2026) focusing on advanced algorithms and system design at the Karakol campus.</p>
+                                </div>
+                            </div>
+                            <div class="exp-item d-flex gap-3">
+                                <span class="badge bg-light text-dark align-self-start py-2">Continuous</span>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Full-Stack Specialization</h6>
+                                    <p class="small text-muted mb-0">Intensive self-study on Golang, Redis, and React Micro-frontend architectures.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </article>
-                <article class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-icon"><i class="bi bi-browser-safari"></i></div>
-                    <div class="project-info">
-                        <h3>News Portal</h3>
-                        <p>Modern news layout focusing on grid systems and typography.</p>
-                        <div class="mt-4">
-                            <a href="https://github.com/Asilbek2706/News-page" class="btn-glow" target="_blank">Live Demo <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                </div>
+
+                <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bento-card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Technical Arsenal</h5>
+                        <div class="swiper skillsSwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide w-auto"><span class="skill-pill">React.js</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">TypeScript</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">JavaScript</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">Python</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">SASS / SCSS</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">SQLite3</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">Golang</span></div>
+                                <div class="swiper-slide w-auto"><span class="skill-pill">Redis</span></div>
+                            </div>
+                            <div class="swiper-pagination d-lg-none mt-3"></div>
                         </div>
                     </div>
-                </article>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <section id="contact" class="contact">
-        <div class="container contact-grid">
-            <div class="contact-info" data-aos="fade-right">
-                <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
-                <p>Open for freelance opportunities and full-time roles.</p>
-
-                <div class="contact-methods">
-                    <a href="mailto:asiloke797@gmail.com" class="method-card">
-                        <i class="bi bi-envelope-paper-fill"></i>
-                        <div class="info">
-                            <span>Email Me</span>
-                            <h4>asiloke797@gmail.com</h4>
+                <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bento-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold m-0">Selected Works</h5>
+                            <a href="https://github.com/Asilbek2706?tab=repositories" target="_blank" class="text-primary text-decoration-none small fw-bold">View All <i class="bi bi-arrow-right"></i></a>
                         </div>
-                    </a>
-
-                    <a href="https://t.me/as1lbek_2706" target="_blank" class="method-card">
-                        <i class="bi bi-telegram"></i>
-                        <div class="info">
-                            <span>Telegram</span>
-                            <h4>@as1lbek_2706</h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="project-wrapper p-3 border rounded-4 h-100 d-flex flex-column">
+                                    <div class="project-img-container mb-3 overflow-hidden rounded-3 border">
+                                        <img src="./images/project-1.png" alt="Go-URL Shortener" class="img-fluid w-100 object-fit-contain" style="max-height: 180px;">
+                                    </div>
+                                    <div class="project-info flex-grow-1">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <i class="bi bi-link-45deg text-primary h4 mb-0"></i>
+                                            <h6 class="fw-bold m-0">Go-URL Shortener</h6>
+                                        </div>
+                                        <p class="text-muted small mb-3">
+                                            A high-performance URL shortening service built with <b>Golang</b> and <b>Redis</b>. Optimized for speed and scalability.
+                                        </p>
+                                    </div>
+                                    <div class="project-actions mt-auto">
+                                        <a href="https://github.com/Asilbek2706/go-url-shortener" target="_blank" class="btn btn-sm btn-dark rounded-3 w-100">
+                                            View Repository <i class="bi bi-github ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="project-wrapper p-3 border rounded-4 h-100 d-flex flex-column">
+                                    <div class="project-img-container mb-3 overflow-hidden rounded-3 border bg-dark">
+                                        <img src="./images/astra-dashboard.png" alt="Astra Systems Dashboard" class="img-fluid w-100 object-fit-contain" style="max-height: 180px;">
+                                    </div>
+                                    <div class="project-info flex-grow-1">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <i class="bi bi-cpu-fill text-primary h4 mb-0"></i>
+                                            <h6 class="fw-bold m-0">Astra Systems</h6>
+                                        </div>
+                                        <p class="text-muted small mb-3">
+                                            A futuristic **Neural Assets Dashboard** with cyberpunk aesthetic, real-time data flow, and advanced UI components.
+                                        </p>
+                                    </div>
+                                    <div class="project-actions mt-auto d-flex gap-2">
+                                        <a href="https://asilbek2706.github.io/ASTRA/" target="_blank" class="btn btn-sm btn-primary rounded-3 flex-grow-1">
+                                            Live Demo <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                        </a>
+                                        <a href="https://github.com/Asilbek2706/ASTRA" target="_blank" class="btn btn-sm btn-outline-dark rounded-3 px-3">
+                                            <i class="bi bi-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
-
-            <div class="contact-form-container" data-aos="fade-left">
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="4" placeholder="Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">
-                            Send Message <i class="bi bi-rocket-takeoff-fill"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
         </div>
-    </section>
-
+    </div>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer-top">
-            <div class="logo">Asilbek<span>.dev</span></div>
-            <div class="social-icons">
-                <a href="https://t.me/as1lbek_2706" class="social-link" title="Telegram" target="_blank"><i class="bi bi-telegram"></i></a>
-                <a href="https://instagram.com/as1lbek_2706" class="social-link" title="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/asilbek-karomatov-91336b33b" class="social-link" title="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
-                <a href="mailto:asilbekkaromatov2@gmail.com" class="social-link" title="Email" target="_blank"><i class="bi bi-envelope-at-fill"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Asilbek Karomatov. Crafted with <i class="bi bi-heart-pulse-fill text-danger mx-1"></i> and SASS.</p>
-        </div>
-    </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 800, offset: 100, once: true });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script src="js/main.js"></script>
 <script src="js/home.js"></script>
+
+<script>
+    AOS.init({
+        duration: 800,
+        offset: 100,
+        once: true,
+        easing: 'ease-out-cubic'
+    });
+</script>
+
 </body>
 </html>

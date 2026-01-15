@@ -1,189 +1,127 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
 
-.navbar {
+.navbar-custom {
     position: fixed;
-    top: 0;
+    top: 20px;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 1.2rem 0;
-    background: rgba(2, 2, 5, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 15px;
 
-    // Skroll bo'lgandagi holat
-    &.scrolled {
-        padding: 0.8rem 0;
-        background: rgba(2, 2, 5, 0.95);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 25px;
+    .nav-container {
         width: 100%;
+        margin: 0 auto;
+        @media (min-width: 1200px) { max-width: 1140px; }
+        @media (min-width: 1400px) { max-width: 1320px; }
+
+        background: v.$bg-glass;
+        backdrop-filter: blur(12px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 24px;
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+        transition: v.$transition;
     }
 
-    /* --- LOGO --- */
-    .logo a {
-        font-size: 1.5rem;
+    .nav-logo {
+        font-size: 20px;
         font-weight: 800;
-        color: #ffffff;
         text-decoration: none;
-        letter-spacing: 1px;
-
-        span {
-            color: v.$primary; // Sening cyan ranging
-            text-shadow: 0 0 15px rgba(v.$primary, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            font-size: 1.3rem;
-        }
-    }
-
-    /* --- NAVIGATION LINKS --- */
-    .nav-link {
-        color: v.$text-dim;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.95rem;
-        position: relative;
-        transition: 0.3s ease;
-
-        &:hover, &.active {
-            color: #ffffff;
-        }
-
-        // Desktop uchun tagidagi chiziq (Pseudo-element)
-        @media (min-width: 992px) {
-            &::after {
-                content: "";
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: v.$gradient;
-                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            &:hover::after, &.active::after {
-                width: 100%;
-            }
-        }
+        color: v.$text-dark;
+        white-space: nowrap;
+        span { color: v.$primary-color; }
     }
 
     .nav-menu {
-        @media (min-width: 992px) {
-            display: flex !important;
-
-            ul {
-                display: flex;
-                gap: 2.5rem;
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-        }
-    }
-
-    /* --- MOBILE COLLAPSE (Full Screen Menu) --- */
-    @media (max-width: 768px) {
-        .navbar-collapse.show {
-            display: flex !important;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(2, 2, 5, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 1100;
-
-            .navbar-nav {
-                flex-direction: column !important;
-                gap: 25px !important;
-                text-align: center;
-
-                .nav-link {
-                    font-size: 1.5rem; // Mobil menyuda matn kattaroq
-                }
-            }
-
-            .mobile-socials {
-                display: flex !important;
-                margin-top: 40px;
-                gap: 25px;
-
-                a {
-                    font-size: 1.8rem;
-                    color: v.$primary;
-                }
-            }
-        }
-    }
-}
-
-/* --- SOCIALS (Header & Global) --- */
-.header-socials {
-    a {
-        color: #ffffff;
-        font-size: 1.4rem;
-        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        display: inline-block;
-        text-decoration: none;
-
-        &:hover {
-            color: v.$primary;
-            transform: translateY(-5px) scale(1.1);
-            filter: drop-shadow(0 0 8px v.$primary);
-        }
-    }
-}
-
-/* --- TOGGLER (Burger Menu) --- */
-.custom-toggler {
-    width: 45px;
-    height: 38px;
-    padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-    display: none; // Desktopda yopiq
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    z-index: 1101;
-
-    @media (max-width: 768px) {
         display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 30px;
+
+        // Mobil menyu holati
+        @media (max-width: 991px) {
+            display: none; // Default yopiq
+            &.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 15px;
+                right: 15px;
+                background: white;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+                border: 1px solid rgba(0,0,0,0.05);
+                z-index: 999;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: v.$text-muted;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: v.$transition;
+            position: relative;
+
+            i { font-size: 18px; color: v.$primary-color; opacity: 0.7; }
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: v.$primary-color;
+                transition: v.$transition;
+                transform: translateX(-50%);
+            }
+            &:hover, &.active {
+                color: v.$text-dark;
+                i { opacity: 1; }
+                &::after { width: 20px; }
+            }
+        }
     }
 
-    .toggler-icon {
-        width: 22px;
-        height: 2px;
-        background-color: #ffffff;
-        display: block;
-        transition: 0.3s;
-        border-radius: 2px;
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
 
-    // Burger bosilganda "X" shakliga keltirish (Agar JS qo'shsang)
-    &.active {
-        .toggler-icon:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .toggler-icon:nth-child(2) { opacity: 0; }
-        .toggler-icon:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .btn-talk {
+        background: v.$text-dark;
+        color: white;
+        padding: 10px 24px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        transition: v.$transition;
+        &:hover {
+            background: v.$primary-color;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 576px) { display: none; }
+    }
+
+    .mobile-toggle {
+        display: none;
+        background: v.$primary-soft;
+        border: none;
+        color: v.$primary-color;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-size: 22px;
+        @media (max-width: 991px) { display: block; }
     }
 }

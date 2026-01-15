@@ -1,131 +1,32 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
-
-.skills {
-    position: relative;
-    z-index: 1;
-    padding: 100px 0;
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 60px;
-        font-size: clamp(2.2rem, 5vw, 3.5rem);
-
-        .highlight {
-            background: v.$gradient;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(v.$primary, 0.4));
-        }
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .skills {
-        display: none;
-    }
-}
-
-.skills-grid {
+.skills-grid, .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
 }
 
-.skill-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 40px 30px;
-    border-radius: 24px;
-    text-align: center;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+.skill-card, .project-card {
+    background: $card-bg;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba($text-muted, 0.1);
+    transition: all 0.3s ease;
 
-    .skill-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 12px;
-
-        span {
-            font-size: 0.9rem;
-            color: v.$text-main;
-            font-weight: 500;
-            opacity: 0.8;
-        }
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at center, rgba(v.$primary, 0.1), transparent 70%);
-        opacity: 0;
-        transition: 0.5s;
-    }
-
-    i {
-        font-size: 3.8rem;
-        background: v.$gradient;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-        margin-bottom: 20px;
-        filter: drop-shadow(0 0 8px rgba(v.$primary, 0.3));
-        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        margin-bottom: 25px;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 0.5px;
+    &:hover {
+        transform: translateY(-10px);
+        border-color: $primary-color;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .progress-bar {
-        width: 100%;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
-        overflow: hidden;
-        position: relative;
+        height: 6px;
+        background: rgba($text-muted, 0.2);
+        border-radius: 10px;
+        margin-top: 15px;
 
         .progress {
+            background: $accent-gradient;
             height: 100%;
-            background: v.$gradient;
-            border-radius: 20px;
-            width: 0;
-            position: relative;
-            box-shadow: 0 0 15px rgba(v.$primary, 0.6);
-
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; width: 150px; height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-                animation: progress-shine 2.5s infinite linear;
-            }
-        }
-    }
-
-    &:hover {
-        transform: translateY(-15px) scale(1.02);
-        border-color: rgba(v.$primary, 0.5);
-        background: rgba(v.$primary, 0.03);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
-        inset 0 0 20px rgba(v.$primary, 0.1);
-
-        &::before { opacity: 1; }
-
-        i {
-            transform: scale(1.2) rotate(-5deg);
-            filter: drop-shadow(0 0 25px rgba(v.$primary, 0.8));
+            border-radius: 10px;
         }
     }
 }
