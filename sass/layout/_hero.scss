@@ -55,7 +55,7 @@
         flex-wrap: wrap;
 
         .social-icon {
-            width: 70px;            // O'lchamini biroz ixchamlashtirdim
+            width: 70px;
             height: 45px;
             display: flex;
             align-items: center;
@@ -87,7 +87,7 @@
             }
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 768px) {
             justify-content: center;
             gap: 10px;
         }

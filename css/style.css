@@ -432,7 +432,7 @@
 .profile-main .social-links .social-icon:active {
   transform: translateY(-2px);
 }
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .profile-main .social-links {
     justify-content: center;
     gap: 10px;
