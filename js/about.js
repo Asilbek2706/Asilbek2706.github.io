@@ -1,84 +1,57 @@
-/**
- * ASILBEK.DEV - ABOUT PAGE SMART ENGINE
- */
-
-"use strict";
-
-const AboutEngine = {
+const BentoSystem = {
     init() {
-        this.handleImageLoader();
-        this.interactiveCards();
-        this.parallaxElements();
-    },
+        this.cards = document.querySelectorAll('.bento-card');
+        this.skills = document.querySelectorAll('.skill-item');
 
-    // 1. RASM YUKLANISHI (Performance focus)
-    handleImageLoader() {
-        const profileImg = document.querySelector('.profile-circle');
-        const container = document.querySelector('.circle-container');
-
-        if (!profileImg) return;
-
-        // Rasm yuklanishidan oldin loading klassini qo'shamiz
-        container.classList.add('loading');
-
-        const img = new Image();
-        img.src = profileImg.src;
-
-        img.onload = () => {
-            profileImg.classList.add('loaded');
-            container.classList.remove('loading');
-        };
-
-        img.onerror = () => {
-            console.error("Profile image failed to load.");
-            container.classList.remove('loading');
-        };
-    },
-
-    // 2. MAGNETIC HOVER (Kartalar kursorni sezishi)
-    interactiveCards() {
-        const storyCard = document.querySelector('.bio-story');
-        if (!storyCard) return;
-
-        storyCard.addEventListener('mousemove', (e) => {
-            const rect = storyCard.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Minimalistik 3D effekt (rotation-siz)
-            const xRotation = (y - rect.height / 2) / 20;
-            const yRotation = (x - rect.width / 2) / 20;
-
-            storyCard.style.transform = `perspective(1000px) scale(1.01) translateY(-5px)`;
+        this.cards.forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(50px)";
+            card.style.transition = "opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)";
         });
 
-        storyCard.addEventListener('mouseleave', () => {
-            storyCard.style.transform = `none`;
-        });
+        this.setupEntrance();
+        this.setupSpotlight();
+        this.setupMagneticSkills();
     },
 
-    // 3. ARSENAL DELAYED REVEAL
-    parallaxElements() {
-        const items = document.querySelectorAll('.stack-grid span');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
-                    }, index * 100);
-                }
+    // 2. Tartib bilan sekin chiqarish
+    setupEntrance() {
+        window.addEventListener('load', () => {
+            this.cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }, index * 250); // Kechikishni 250ms ga oshirdik (yanada sekinroq tartib)
             });
-        }, { threshold: 0.1 });
+        });
+    },
 
-        items.forEach(item => {
-            item.style.opacity = "0";
-            item.style.transform = "translateY(20px)";
-            item.style.transition = "all 0.6s ease-out";
-            observer.observe(item);
+    // 3. Spotlight effekti
+    setupSpotlight() {
+        this.cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            });
+        });
+    },
+
+    setupMagneticSkills() {
+        this.skills.forEach(skill => {
+            skill.addEventListener('mousemove', (e) => {
+                const rect = skill.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
+            });
+
+            skill.addEventListener('mouseleave', () => {
+                skill.style.transform = `translate(0, 0) translateY(0)`;
+            });
         });
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => AboutEngine.init());
+document.addEventListener('DOMContentLoaded', () => {
+    BentoSystem.init();
+});

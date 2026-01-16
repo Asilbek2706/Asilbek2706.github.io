@@ -1,16 +1,13 @@
 "use strict";
 
-/**
- * GlobalApp - Portfolioning barcha sahifalari uchun umumiy funksiyalar
- */
 const GlobalApp = {
     init() {
         this.initMobileMenu();
-        this.initNavbarScroll(); // Navbar skroll effekti
+        this.initNavbarScroll();
         this.initNeonCursor();
         this.initAOS();
         this.initSkillsCarousel();
-        this.initBentoTilt(); // Hammasi uchun umumiy Tilt effekti
+        this.initBentoTilt();
     },
 
     // 1. Mobil menyu (Burger)
@@ -49,9 +46,7 @@ const GlobalApp = {
         });
     },
 
-    // 3. Bento Tilt Effect (Hero Profile va Footer kartalari uchun)
     initBentoTilt() {
-        // .profile-main olib tashlandi, faqat .js-tilt qoldi
         const tiltCards = document.querySelectorAll('.js-tilt');
 
         tiltCards.forEach(card => {
@@ -75,7 +70,6 @@ const GlobalApp = {
         });
     },
 
-    // 4. Technical Arsenal Carousel
     initSkillsCarousel() {
         const swiperElement = document.querySelector('.skillsSwiper');
         if (swiperElement && typeof Swiper !== 'undefined') {
@@ -92,7 +86,6 @@ const GlobalApp = {
         }
     },
 
-    // 5. Neon Cursor
     initNeonCursor() {
         if (window.matchMedia("(pointer: coarse)").matches) return;
 
@@ -115,7 +108,6 @@ const GlobalApp = {
         };
         animateCursor();
 
-        // Hover animatsiyasi
         document.addEventListener('mouseover', (e) => {
             if (e.target.closest('a, button, .bento-card, .skill-pill, .social-icon')) {
                 cursor.classList.add('cursor-hover');
@@ -128,7 +120,6 @@ const GlobalApp = {
         });
     },
 
-    // 6. AOS
     initAOS() {
         if (window.AOS) {
             window.AOS.init({
