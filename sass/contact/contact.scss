@@ -5,19 +5,20 @@
   background: #ffffff;
   border-radius: 48px;
   padding: 60px;
-  border: 1px solid #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   z-index: 1;
-  box-shadow: 0 40px 100px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 
   .contact-bg-glow {
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(v.$primary-color, 0.06) 0%, transparent 70%);
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(v.$primary-color, 0.05) 0%, transparent 70%);
     z-index: -1;
-    filter: blur(60px);
+    filter: blur(80px);
     pointer-events: none;
   }
 }
@@ -29,54 +30,53 @@
   .cyber-badge {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 22px;
+    gap: 12px;
+    padding: 10px 24px;
     background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
+    border: 1px solid #edf2f7;
+    border-radius: 100px;
     color: v.$primary-color;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 10px;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
 
-    i {
-      font-size: 16px;
-    }
+    i { font-size: 14px; }
   }
 
   .title {
-    font-size: 68px;
+    font-size: 72px;
     font-weight: 950;
-    letter-spacing: -4px;
+    letter-spacing: -4.5px;
     color: #0f172a;
     line-height: 0.9;
-    margin: 0 0 25px 0;
+    margin: 0 0 20px 0;
 
     .highlight {
       color: v.$primary-color;
       position: relative;
-      z-index: 1;
-
-      &::before {
+      display: inline-block;
+      &::after {
         content: "";
         position: absolute;
-        bottom: 15px;
+        bottom: 12%;
         left: 0;
         width: 100%;
         height: 12px;
-        background: rgba(v.$primary-color, 0.1);
+        background: v.$primary-color;
+        opacity: 0.08;
         z-index: -1;
       }
     }
   }
 
   .header-intro {
-    font-size: 19px;
+    font-size: 20px;
     color: #64748b;
-    max-width: 580px;
-    line-height: 1.6;
+    max-width: 520px;
+    line-height: 1.5;
     font-weight: 450;
   }
 }
@@ -84,62 +84,51 @@
 .bento-contact-grid {
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 24px;
+  gap: 20px;
+  align-items: stretch;
 }
 
 .bento-info-stack {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 
   .bento-card-mini {
     background: #fcfdfe;
     border: 1px solid #f1f5f9;
-    padding: 24px;
-    border-radius: 30px;
+    padding: 26px;
+    border-radius: 32px;
     display: flex;
     align-items: center;
     text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-    overflow: hidden;
-
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(v.$primary-color, 0.04) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
 
     i {
       font-size: 24px;
       color: v.$primary-color;
       background: #ffffff;
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 18px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
-      z-index: 1;
-      transition: all 0.5s ease;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    div {
-      z-index: 1;
+    .ms-3 {
       span {
         display: block;
-        font-size: 10px;
+        font-size: 9px;
         color: #94a3b8;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        margin-bottom: 3px;
+        margin-bottom: 2px;
       }
-
       p {
         font-size: 15px;
         color: #1e293b;
@@ -150,14 +139,9 @@
 
     &.clickable:hover {
       background: #ffffff;
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-5px) scale(1.02);
       border-color: rgba(v.$primary-color, 0.2);
-      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.06);
-
-      &::after {
-        opacity: 1;
-      }
-
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
       i {
         background: v.$primary-color;
         color: #ffffff;
@@ -169,9 +153,8 @@
       margin-top: auto;
       background: #f0fdf4;
       border: 1px dashed #22c55e;
+      padding: 20px;
       justify-content: center;
-      padding: 18px;
-
       .status-dot {
         width: 10px;
         height: 10px;
@@ -179,8 +162,7 @@
         border-radius: 50%;
         margin-right: 12px;
         position: relative;
-
-        &::before {
+        &::after {
           content: "";
           position: absolute;
           inset: -4px;
@@ -189,14 +171,7 @@
           animation: status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
       }
-
-      p {
-        color: #15803d;
-        font-size: 13px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
+      p { color: #166534; font-size: 12px; font-weight: 900; text-transform: uppercase; }
     }
   }
 }
@@ -205,17 +180,16 @@
   .bento-input-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto auto;
-    gap: 20px;
+    gap: 16px;
 
     .input-bento-cell {
       background: #f8fafc;
       border: 1px solid #f1f5f9;
-      padding: 20px 28px;
+      padding: 24px 30px;
       border-radius: 32px;
       display: flex;
       flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
 
       label {
@@ -224,71 +198,39 @@
         color: #94a3b8;
         text-transform: uppercase;
         letter-spacing: 1.2px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
         gap: 10px;
-
-        i {
-          color: v.$primary-color;
-          font-size: 16px;
-          opacity: 0.7;
-        }
+        i { color: v.$primary-color; font-size: 16px; opacity: 0.6; }
       }
 
-      input,
-      textarea {
+      input, textarea {
         background: transparent;
         border: none;
         font-size: 16px;
-        font-weight: 650;
+        font-weight: 700;
         color: #0f172a;
         width: 100%;
         padding: 0;
         font-family: inherit;
-
-        &::placeholder {
-          color: #cbd5e1;
-          font-weight: 500;
-        }
-
-        &:focus {
-          outline: none;
-        }
+        &:focus { outline: none; }
+        &::placeholder { color: #cbd5e1; font-weight: 500; }
       }
 
-      textarea {
-        resize: none;
-        min-height: 100px;
-      }
+      textarea { resize: none; min-height: 120px; }
 
       &:focus-within {
         background: #ffffff;
         border-color: v.$primary-color;
-        transform: scale(1.01);
-        box-shadow: 0 20px 40px rgba(v.$primary-color, 0.05);
-
-        label {
-          color: v.$primary-color;
-          i {
-            opacity: 1;
-            animation: icon-float 2s ease-in-out infinite;
-          }
-        }
+        box-shadow: 0 15px 35px rgba(v.$primary-color, 0.05);
+        transform: translateY(-3px);
+        label { color: v.$primary-color; i { opacity: 1; } }
       }
 
-      &.name {
-        grid-column: 1;
-      }
-      &.email {
-        grid-column: 2;
-      }
-      &.subject {
-        grid-column: 1 / span 2;
-      }
-      &.message {
-        grid-column: 1 / span 2;
-      }
+      &.name { grid-column: 1; }
+      &.email { grid-column: 2; }
+      &.subject, &.message { grid-column: 1 / span 2; }
     }
 
     .bento-submit {
@@ -307,109 +249,222 @@
       justify-content: center;
       gap: 15px;
       cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
 
-      span {
-        position: relative;
-        z-index: 2;
-      }
-
-      i {
-        font-size: 20px;
-        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        position: relative;
-        z-index: 2;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        transform: translateX(-100%);
-        transition: 0.6s;
-        z-index: 1;
-      }
+      span { position: relative; z-index: 2; }
+      i { font-size: 20px; transition: transform 0.5s ease; position: relative; z-index: 2; }
 
       &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: v.$primary-color;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 0;
+        content: ""; position: absolute; inset: 0; background: v.$primary-color;
+        transform: scaleX(0); transform-origin: right;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1;
       }
 
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 25px 50px rgba(v.$primary-color, 0.3);
-
-        &::before {
-          transform: translateX(100%);
-        }
-
-        &::after {
-          transform: scaleX(1);
-          transform-origin: left;
-        }
-
-        i {
-          transform: translateX(10px) rotate(-15deg) scale(1.2);
-        }
+        box-shadow: 0 25px 50px rgba(v.$primary-color, 0.25);
+        &::after { transform: scaleX(1); transform-origin: left; }
+        i { transform: translateX(8px) rotate(-15deg); }
       }
 
-      &:active {
-        transform: scale(0.97);
+      &.success-state {
+        background: #22c55e !important;
+        &::after { display: none; }
       }
+
+      &:active { transform: scale(0.97); }
     }
   }
 }
 
 @keyframes status-ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.bento-input-grid > div {
+  animation: entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@for $i from 1 through 5 {
+  .bento-input-grid > div:nth-child(#{$i}) { animation-delay: #{$i * 0.1}s; }
+}
+
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  -webkit-text-fill-color: #0f172a;
+}
+
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Responsive Web Design (RWD) --- */
+@media (max-width: 1200px) {
+  .contact-container {
+    padding: 50px;
+
+    .section-header {
+      .title {
+        font-size: 60px;
+        letter-spacing: -3px;
+      }
+    }
   }
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
+
+  .bento-contact-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
   }
 }
 
-@keyframes icon-float {
-  0%,
-  100% {
-    transform: translateY(0);
+@media (max-width: 992px) {
+  .contact-container {
+    padding: 40px;
+    border-radius: 40px;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+
+      .header-intro {
+        margin: 0 auto;
+      }
+
+      .title {
+        font-size: 52px;
+      }
+    }
   }
-  50% {
-    transform: translateY(-3px);
+
+  .bento-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .bento-info-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    .bento-card-mini {
+      &.status {
+        grid-column: span 2;
+        margin-top: 10px;
+      }
+    }
   }
 }
 
-.bento-input-grid > div:nth-child(1) { transition-delay: 0.05s; }
-.bento-input-grid > div:nth-child(2) { transition-delay: 0.1s; }
-.bento-input-grid > div:nth-child(3) { transition-delay: 0.15s; }
-.bento-input-grid > div:nth-child(4) { transition-delay: 0.2s; }
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 30px 20px;
+    border-radius: 32px;
 
-.contact-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, v.$primary-color, transparent);
-  opacity: 0.5;
+    .section-header {
+      .title {
+        font-size: 42px;
+        letter-spacing: -2px;
+      }
+
+      .cyber-badge {
+        padding: 8px 20px;
+        font-size: 9px;
+      }
+    }
+  }
+
+  .bento-form {
+    .bento-input-grid {
+      grid-template-columns: 1fr;
+
+      .input-bento-cell {
+        padding: 20px 24px;
+
+        &.name, &.email {
+          grid-column: span 1;
+        }
+      }
+
+      .bento-submit {
+        height: 65px;
+        font-size: 15px;
+        border-radius: 24px;
+      }
+    }
+  }
 }
 
-.bento-card-mini .ms-3 {
-  display: flex;
-  flex-direction: column;
+@media (max-width: 576px) {
+  .contact-container {
+    padding: 25px 15px;
+
+    .section-header {
+      .title {
+        font-size: 34px;
+        line-height: 1.1;
+      }
+
+      .header-intro {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .bento-info-stack {
+    grid-template-columns: 1fr;
+
+    .bento-card-mini {
+      padding: 18px;
+      border-radius: 24px;
+
+      &.status {
+        grid-column: span 1;
+      }
+
+      i {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+
+      .ms-3 {
+        p { font-size: 14px; }
+      }
+    }
+  }
+
+  .bento-form {
+    .bento-input-grid {
+      gap: 12px;
+
+      .input-bento-cell {
+        border-radius: 24px;
+
+        label {
+          font-size: 10px;
+          margin-bottom: 8px;
+        }
+
+        input {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .section-header .title {
+    font-size: 28px;
+  }
 }
