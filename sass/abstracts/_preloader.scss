@@ -1,0 +1,118 @@
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
+
+  &.loaded {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .loader-wrapper {
+    text-align: center;
+    width: 100%; // Markazni saqlash uchun
+    padding: 20px;
+  }
+
+  .circle-container {
+    position: relative;
+    width: 150px; // Default Desktop
+    height: 150px;
+    margin: 0 auto 30px;
+
+    // Kichik ekranlar uchun o'lchamlarni moslashtirish
+    @media (max-width: 768px) {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      width: 100px;
+      height: 100px;
+    }
+
+    svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+
+    circle {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+    }
+
+    .circle-bg {
+      stroke: rgba(255, 255, 255, 0.05);
+    }
+
+    .circle-progress {
+      stroke: #3b82f6;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      transition: stroke-dashoffset 0.1s ease;
+    }
+
+    .percentage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .loader-info {
+    .loader-name {
+      color: white;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      margin-bottom: 8px;
+
+      span { color: #3b82f6; }
+
+      @media (max-width: 768px) {
+        font-size: 18px;
+        letter-spacing: 3px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+    }
+
+    .loader-status {
+      color: #64748b;
+      font-size: 10px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      animation: blink 1s infinite alternate;
+
+      @media (max-width: 480px) {
+        font-size: 8px;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}

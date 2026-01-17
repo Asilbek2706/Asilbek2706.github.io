@@ -2,6 +2,7 @@
 @use "layout/footer";
 @use "layout/hero"; // Profile main shu yerda
 @use "abstracts/variables" as v;
+@use "abstracts/preloader";
 
 // --- 1. Global Reset & Base ---
 body {

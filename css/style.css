@@ -446,6 +446,120 @@
   }
 }
 
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
+}
+#preloader.loaded {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+#preloader .loader-wrapper {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+#preloader .circle-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px;
+}
+@media (max-width: 768px) {
+  #preloader .circle-container {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 480px) {
+  #preloader .circle-container {
+    width: 100px;
+    height: 100px;
+  }
+}
+#preloader .circle-container svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+#preloader .circle-container circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+#preloader .circle-container .circle-bg {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+#preloader .circle-container .circle-progress {
+  stroke: #3b82f6;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.1s ease;
+}
+#preloader .circle-container .percentage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: "Inter", sans-serif;
+}
+@media (max-width: 768px) {
+  #preloader .circle-container .percentage {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  #preloader .circle-container .percentage {
+    font-size: 18px;
+  }
+}
+#preloader .loader-info .loader-name {
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  margin-bottom: 8px;
+}
+#preloader .loader-info .loader-name span {
+  color: #3b82f6;
+}
+@media (max-width: 768px) {
+  #preloader .loader-info .loader-name {
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
+}
+@media (max-width: 480px) {
+  #preloader .loader-info .loader-name {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+}
+#preloader .loader-info .loader-status {
+  color: #64748b;
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  animation: blink 1s infinite alternate;
+}
+@media (max-width: 480px) {
+  #preloader .loader-info .loader-status {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f8f9fa;
