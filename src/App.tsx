@@ -23,7 +23,7 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <BrowserRouter> {/* Linklar ishlashi uchun shart */}
+        <BrowserRouter basename={"/"}> {/* Linklar ishlashi uchun shart */}
             <div className="app-wrapper">
                 <div className="background-decor" aria-hidden="true">
                     <div className="shape shape-1"></div>
