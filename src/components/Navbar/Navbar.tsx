@@ -29,7 +29,11 @@ const Navbar: React.FC = () => {
                     Asilbek<span>.dev</span>
                 </Link>
 
-                {isMenuOpen && <div className="nav-overlay" onClick={toggleMenu}></div>}
+                {/* Overlay har doim DOMda bo'lishi animatsiya uchun muhim */}
+                <div
+                    className={`nav-overlay ${isMenuOpen ? 'active' : ''}`}
+                    onClick={toggleMenu}
+                ></div>
 
                 <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
                     <li className="nav-item">
@@ -75,6 +79,7 @@ const Navbar: React.FC = () => {
                         aria-label="Toggle menu"
                         type="button"
                     >
+                        {/* Ikonka almashishi uchun */}
                         <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
                     </button>
                 </div>
