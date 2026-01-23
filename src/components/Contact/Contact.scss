@@ -1,0 +1,442 @@
+// --- 1. O'zgaruvchilar (Variables) ---
+$primary-color: #4770ff;
+$primary-soft: rgba(71, 112, 255, 0.1);
+$text-dark: #1a1a1a;
+$text-muted: #666;
+$bg-light: #f8f9fa;
+$bg-glass: rgba(255, 255, 255, 0.7);
+$white: #ffffff;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$border-radius: 24px;
+
+.contact-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 48px;
+  padding: 60px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  z-index: 1;
+  box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  .contact-bg-glow {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($primary-color, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+}
+
+.section-header {
+  margin-bottom: 50px;
+  position: relative;
+
+  .cyber-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    background: #f8fafc;
+    border: 1px solid #edf2f7;
+    border-radius: 100px;
+    color: $primary-color;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+
+    i { font-size: 14px; }
+  }
+
+  .title {
+    font-size: 72px;
+    font-weight: 950;
+    letter-spacing: -4.5px;
+    color: #0f172a;
+    line-height: 0.9;
+    margin: 0 0 20px 0;
+
+    .highlight {
+      color: $primary-color;
+      position: relative;
+      display: inline-block;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 12%;
+        left: 0;
+        width: 100%;
+        height: 12px;
+        background: $primary-color;
+        opacity: 0.08;
+        z-index: -1;
+      }
+    }
+  }
+
+  .header-intro {
+    font-size: 20px;
+    color: #64748b;
+    max-width: 520px;
+    line-height: 1.5;
+    font-weight: 450;
+  }
+}
+
+.bento-contact-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.bento-info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .bento-card-mini {
+    background: #fcfdfe;
+    border: 1px solid #f1f5f9;
+    padding: 26px;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+
+    i {
+      font-size: 24px;
+      color: $primary-color;
+      background: #ffffff;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ms-3 {
+      span {
+        display: block;
+        font-size: 9px;
+        color: #94a3b8;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 2px;
+      }
+      p {
+        font-size: 15px;
+        color: #1e293b;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+
+    &.clickable:hover {
+      background: #ffffff;
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba($primary-color, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+      i {
+        background: $primary-color;
+        color: #ffffff;
+        transform: rotate(-10deg) scale(1.1);
+      }
+    }
+
+    &.status {
+      margin-top: auto;
+      background: #f0fdf4;
+      border: 1px dashed #22c55e;
+      padding: 20px;
+      justify-content: center;
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background: #22c55e;
+        border-radius: 50%;
+        margin-right: 12px;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          inset: -4px;
+          border: 2px solid #22c55e;
+          border-radius: 50%;
+          animation: status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+      }
+      p { color: #166534; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    }
+  }
+}
+
+.bento-form {
+  .bento-input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    .input-bento-cell {
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      padding: 24px 30px;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+
+      label {
+        font-size: 11px;
+        font-weight: 900;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        i { color: $primary-color; font-size: 16px; opacity: 0.6; }
+      }
+
+      input, textarea {
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a;
+        width: 100%;
+        padding: 0;
+        font-family: inherit;
+        &:focus { outline: none; }
+        &::placeholder { color: #cbd5e1; font-weight: 500; }
+      }
+
+      textarea { resize: none; min-height: 120px; }
+
+      &:focus-within {
+        background: #ffffff;
+        border-color: $primary-color;
+        box-shadow: 0 15px 35px rgba($primary-color, 0.05);
+        transform: translateY(-3px);
+        label { color: $primary-color; i { opacity: 1; } }
+      }
+
+      &.name { grid-column: 1; }
+      &.email { grid-column: 2; }
+      &.subject, &.message { grid-column: 1 / span 2; }
+    }
+
+    .bento-submit {
+      grid-column: 1 / span 2;
+      height: 75px;
+      background: #0f172a;
+      border: none;
+      border-radius: 32px;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+
+      span { position: relative; z-index: 2; }
+      i { font-size: 20px; transition: transform 0.5s ease; position: relative; z-index: 2; }
+
+      &::after {
+        content: ""; position: absolute; inset: 0; background: $primary-color;
+        transform: scaleX(0); transform-origin: right;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba($primary-color, 0.25);
+        &::after { transform: scaleX(1); transform-origin: left; }
+        i { transform: translateX(8px) rotate(-15deg); }
+      }
+
+      &.success-state {
+        background: #22c55e !important;
+        &::after { display: none; }
+      }
+
+      &:active { transform: scale(0.97); }
+    }
+  }
+}
+
+@keyframes status-ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.bento-input-grid > div {
+  animation: entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@for $i from 1 through 5 {
+  .bento-input-grid > div:nth-child(#{$i}) { animation-delay: #{$i * 0.1}s; }
+}
+
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  -webkit-text-fill-color: #0f172a;
+}
+
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 1200px) {
+  .contact-container {
+    padding: 50px;
+    border-radius: 40px;
+
+    .section-header .title {
+      font-size: clamp(48px, 6vw, 64px);
+      letter-spacing: -3px;
+    }
+  }
+
+  .bento-contact-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .contact-container {
+    padding: 40px;
+    border-radius: 36px;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      .header-intro { margin: 0 auto; font-size: 18px; }
+    }
+  }
+
+  .bento-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .bento-info-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    .bento-card-mini.status { grid-column: span 2; }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 35px 20px;
+    margin: 10px;
+
+    .section-header .title {
+      font-size: 40px;
+      letter-spacing: -2px;
+    }
+  }
+
+  .bento-form {
+    .bento-input-grid {
+      grid-template-columns: 1fr !important;
+      gap: 12px;
+
+      .input-bento-cell {
+        grid-column: 1 / -1 !important;
+        padding: 20px 24px;
+        border-radius: 24px;
+
+        input, textarea {
+          font-size: 16px;
+        }
+      }
+
+      .bento-submit {
+        grid-column: 1 / -1 !important;
+        height: 68px;
+        font-size: 16px;
+        border-radius: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-container {
+    padding: 30px 15px;
+    border-radius: 28px;
+
+    .section-header {
+      .title { font-size: 32px; }
+      .header-intro { font-size: 15px; }
+      .cyber-badge { font-size: 8px; padding: 6px 14px; }
+    }
+  }
+
+  .bento-info-stack {
+    grid-template-columns: 1fr;
+
+    .bento-card-mini {
+      padding: 16px;
+      border-radius: 22px;
+
+      i { width: 44px; height: 44px; font-size: 18px; }
+      .ms-3 p { font-size: 14px; }
+    }
+  }
+
+  .bento-form .bento-input-grid {
+    .input-bento-cell {
+      padding: 16px 20px;
+      label { font-size: 10px; margin-bottom: 6px; }
+    }
+
+    .bento-submit {
+      height: 62px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-container .section-header .title {
+    font-size: 26px;
+    letter-spacing: -1.5px;
+  }
+}

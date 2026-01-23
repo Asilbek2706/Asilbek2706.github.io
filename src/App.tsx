@@ -11,6 +11,7 @@ import Projects from './components/Projects/Projects';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Portfolio from "./components/Portfolio/Portfolio";
+import Contact from './components/Contact/Contact';
 
 import './App.scss';
 
@@ -58,6 +59,7 @@ const App: React.FC = () => {
 
                                 <Route path="/about" element={<About />} />
                                 <Route path="/portfolio" element={<Portfolio />} />
+                                <Route path="/contact" element={<Contact />} />
                             </Routes>
                         </section>
                     </div>
