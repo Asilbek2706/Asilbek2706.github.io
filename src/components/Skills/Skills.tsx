@@ -28,7 +28,7 @@ const Skills: React.FC = () => {
                 allowTouchMove={true}
                 className="skillsSwiper"
             >
-                {[...skills, ...skills].map((skill, index) => (
+                {[...skills ].map((skill, index) => (
                     <SwiperSlide key={index} style={{ width: 'auto' }}>
                         <span className="skill-pill">{skill}</span>
                     </SwiperSlide>
