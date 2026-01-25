@@ -29,7 +29,6 @@ const Navbar: React.FC = () => {
                     Asilbek<span>.dev</span>
                 </Link>
 
-                {/* Overlay har doim DOMda bo'lishi animatsiya uchun muhim */}
                 <div
                     className={`nav-overlay ${isMenuOpen ? 'active' : ''}`}
                     onClick={toggleMenu}
@@ -39,7 +38,8 @@ const Navbar: React.FC = () => {
                     <li className="nav-item">
                         <NavLink
                             to="/"
-                            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"}
                         >
                             <i className="bi bi-house-door"></i> Home
                         </NavLink>
@@ -47,7 +47,8 @@ const Navbar: React.FC = () => {
                     <li className="nav-item">
                         <NavLink
                             to="/about"
-                            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"}
                         >
                             <i className="bi bi-person"></i> About
                         </NavLink>
@@ -55,7 +56,8 @@ const Navbar: React.FC = () => {
                     <li className="nav-item">
                         <NavLink
                             to="/portfolio"
-                            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"}
                         >
                             <i className="bi bi-grid"></i> Portfolio
                         </NavLink>
@@ -63,7 +65,8 @@ const Navbar: React.FC = () => {
                     <li className="nav-item">
                         <NavLink
                             to="/contact"
-                            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                            className={({ isActive }) =>
+                                isActive ? "nav-link active" : "nav-link"}
                         >
                             <i className="bi bi-envelope"></i> Contact
                         </NavLink>
@@ -79,7 +82,6 @@ const Navbar: React.FC = () => {
                         aria-label="Toggle menu"
                         type="button"
                     >
-                        {/* Ikonka almashishi uchun */}
                         <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
                     </button>
                 </div>

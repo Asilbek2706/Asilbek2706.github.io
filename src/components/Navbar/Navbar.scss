@@ -183,6 +183,7 @@ $border-radius: 24px;
     border-radius: 10px;
     font-size: 22px;
     transition: $transition;
+    z-index: 999;
 
     &:hover {
       background: rgba(71, 112, 255, 0.18);
