@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
                     <Link to="/contact" className="btn-talk d-desktop-only">Let's talk</Link>
 
                     <button
-                        className={`mobile-toggle ${isMenuOpen ? 'is-active' : ''}`}
+                        className={`mobile-toggle ${isMenuOpen ? 'active' : ''}`}
                         onClick={toggleMenu}
                         aria-label="Toggle menu"
                         type="button"

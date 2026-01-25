@@ -47,9 +47,30 @@ $border-radius: 24px;
     text-decoration: none;
     color: $text-dark;
     white-space: nowrap;
+    position: relative;
+    z-index: 1005;
 
     span {
       color: $primary-color;
+    }
+  }
+
+  .nav-overlay {
+    position: fixed;
+    top: -20px;
+    left: -15px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition;
+    z-index: 998;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
     }
   }
 
@@ -112,7 +133,7 @@ $border-radius: 24px;
       gap: 18px;
       padding: 22px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(14px) saturate(160%);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.6);
@@ -120,17 +141,20 @@ $border-radius: 24px;
       transform: translateY(-10px) scale(0.98);
       pointer-events: none;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
 
       &.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        pointer-events: auto !important;
+        display: flex !important;
       }
 
       .nav-link {
         padding: 14px 16px;
         border-radius: 14px;
         font-size: 15px;
+        width: 100%;
 
         i {
           font-size: 20px;
@@ -143,6 +167,7 @@ $border-radius: 24px;
         &:hover,
         &.active {
           background: $primary-soft;
+          color: $primary-color;
         }
       }
     }
@@ -152,6 +177,8 @@ $border-radius: 24px;
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
+    z-index: 1005;
   }
 
   .btn-talk {
@@ -183,7 +210,9 @@ $border-radius: 24px;
     border-radius: 10px;
     font-size: 22px;
     transition: $transition;
-    z-index: 999;
+    z-index: 1010;
+    position: relative;
+    cursor: pointer;
 
     &:hover {
       background: rgba(71, 112, 255, 0.18);
