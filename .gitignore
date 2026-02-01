@@ -27,3 +27,4 @@ dist-ssr
 backend/.env
 backend/venv
 backend/api/migrations
+backend/db.sqlite3
