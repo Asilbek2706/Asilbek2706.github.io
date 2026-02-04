@@ -29,31 +29,28 @@ class Project(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.image:
+        if self.image and os.path.exists(self.image.path):
             try:
-                self.optimize_image(self.image.path)
-            except Exception: pass
+                self.optimize_image(self.image.path, (1080, 1080))
+            except Exception as e:
+                print(f"Rasm optimizatsiya xatosi: {e}")
 
-    def optimize_image(self, image_path):
-        if os.path.exists(image_path):
-            img = Image.open(image_path)
-            if img.height > 1080 or img.width > 1080:
-                img.thumbnail((1080, 1080))
-                img.save(image_path, quality=85, optimize=True)
+    def optimize_image(self, path, size):
+        img = Image.open(path)
+        if img.height > size[1] or img.width > size[0]:
+            img.thumbnail(size)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
+            img.save(path, quality=85, optimize=True)
 
-# --- TAHRIRLANGAN CONTACTMESSAGE ---
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100, verbose_name="Foydalanuvchi")
     email = models.EmailField(verbose_name="E-pochta")
     subject = models.CharField(max_length=200, verbose_name="Mavzu")
     message = models.TextField(verbose_name="Foydalanuvchi xabari")
-
-    # Message Center uchun yangi maydonlar
     admin_reply = models.TextField(blank=True, null=True, verbose_name="Admin javobi")
     is_answered = models.BooleanField(default=False, verbose_name="Javob berildi")
     likes = models.PositiveIntegerField(default=0, verbose_name="Reaksiyalar")
-
-    # Texnik ma'lumotlar
     user_ip = models.GenericIPAddressField(blank=True, null=True)
     is_read = models.BooleanField(default=False, verbose_name="O'qildi")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Yuborilgan vaqt")
@@ -66,7 +63,6 @@ class ContactMessage(models.Model):
     def __str__(self):
         return f"{self.name} - {self.subject}"
 
-    # Javob yozilganda avtomatik statusni o'zgartirish
     def save(self, *args, **kwargs):
         if self.admin_reply:
             self.is_answered = True
@@ -74,25 +70,31 @@ class ContactMessage(models.Model):
         super().save(*args, **kwargs)
 
 class Profile(models.Model):
-    full_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='profile/')
-    bio = models.TextField()
-    short_bio = models.CharField(max_length=255, blank=True)
-    email = models.EmailField()
-    telegram = models.URLField(blank=True)
-    instagram = models.URLField(blank=True)
-    github = models.URLField(blank=True)
-    linkedin = models.URLField(blank=True)
+    full_name = models.CharField(max_length=100, verbose_name="To'liq ism")
+    image = models.ImageField(upload_to='profile/', verbose_name="Profil rasmi")
+    bio = models.TextField(verbose_name="Tarjimai hol")
+    short_bio = models.CharField(max_length=255, blank=True, verbose_name="Qisqa ma'lumot")
+    email = models.EmailField(verbose_name="Email")
+    telegram = models.URLField(blank=True, verbose_name="Telegram")
+    instagram = models.URLField(blank=True, verbose_name="Instagram")
+    github = models.URLField(blank=True, verbose_name="GitHub")
+    linkedin = models.URLField(blank=True, verbose_name="LinkedIn")
+
+    class Meta:
+        verbose_name = "Profil"
+        verbose_name_plural = "Profiller"
+
+    def __str__(self):
+        return self.full_name  # BU SHART! Aks holda Admin panel 500 beradi.
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.image:
+        if self.image and os.path.exists(self.image.path):
             try:
-                self.optimize_image(self.image.path)
-            except Exception: pass
-
-    def optimize_image(self, image_path):
-        if os.path.exists(image_path):
-            img = Image.open(image_path)
-            img.thumbnail((800, 800))
-            img.save(image_path, quality=90, optimize=True)
+                img = Image.open(self.image.path)
+                img.thumbnail((800, 800))
+                if img.mode in ("RGBA", "P"):
+                    img = img.convert("RGB")
+                img.save(self.image.path, quality=90, optimize=True)
+            except Exception as e:
+                print(f"Profil rasm xatosi: {e}")
