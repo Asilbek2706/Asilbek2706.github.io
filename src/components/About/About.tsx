@@ -1,11 +1,35 @@
 import React from 'react';
 import './About.scss';
 
-const About: React.FC = () => {
+// Profil ma'lumotlari uchun interfeys
+interface ProfileData {
+    full_name: string;
+    bio: string;
+    short_bio?: string;
+    // Boshqa kerakli maydonlarni shu yerga qo'shishingiz mumkin
+}
+
+// App.tsx dan keladigan props uchun interfeys
+interface AboutProps {
+    data: ProfileData | null;
+}
+
+const About: React.FC<AboutProps> = ({ data }) => {
+    // Ma'lumot yuklanayotgan bo'lsa skeleton yoki bo'sh joy qaytaramiz
+    if (!data) {
+        return <div className="p-5 text-center">Ma'lumot yuklanmoqda...</div>;
+    }
+
+    // Ismni qismlarga ajratamiz (Highlight qilish uchun)
+    const nameParts = data.full_name.split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
     return (
         <div className="home-main-wrapper p-0 m-0">
             <div className="about-bento-grid w-100">
 
+                {/* Asosiy Bio Card */}
                 <div className="bento-card bio-card" data-aos="fade-right">
                     <div className="card-glow"></div>
                     <div className="badge-modern">
@@ -13,18 +37,18 @@ const About: React.FC = () => {
                         <span>2024 — 2028 Academic Odyssey</span>
                     </div>
                     <h2 className="about-title">
-                        Asilbek <span className="highlight">Karomatov</span>
+                        {firstName} <span className="highlight">{lastName}</span>
                     </h2>
-                    <p className="bio-lead">Frontend Architect & UI/UX Visionary</p>
+                    <p className="bio-lead">{data.short_bio || "Frontend Architect & UI/UX Visionary"}</p>
                     <div className="bio-story">
-                        <p>
-                            As a 2nd-year Computer Science student at <span className="fw-bold">Acharya University</span>,
-                            I don't just write code—I engineer experiences. My focus lies in bridging the gap between
-                            complex backend logic and pixel-perfect user interfaces.
-                        </p>
+                        <div
+                            className="profile-bio-text"
+                            dangerouslySetInnerHTML={{ __html: data.bio }}
+                        />
                     </div>
                 </div>
 
+                {/* Ma'lumot mini cardlari */}
                 <div className="bento-row">
                     <div className="bento-card info-mini" data-aos="fade-up">
                         <div className="icon-box">
@@ -47,13 +71,14 @@ const About: React.FC = () => {
                     </div>
                 </div>
 
+                {/* Texnologiyalar arsenali */}
                 <div className="bento-card arsenal-card" data-aos="fade-up">
-                    <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
                         <h3>The Stack</h3>
                         <span className="status-learning">
-              <div className="dot-pulse"></div>
-              Currently Mastering React
-            </span>
+                            <div className="dot-pulse"></div>
+                            Currently Mastering React
+                        </span>
                     </div>
 
                     <div className="stack-grid">

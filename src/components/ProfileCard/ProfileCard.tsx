@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './ProfileCard.scss';
 
 // Profil uchun interfeys
@@ -14,34 +13,32 @@ interface ProfileData {
     linkedin: string;
 }
 
-const ProfileCard: React.FC = () => {
-    const [profile, setProfile] = useState<ProfileData | null>(null);
+// App.tsx dan keladigan 'data' propini taniy olish uchun interfeys
+interface ProfileCardProps {
+    data: ProfileData | null;
+}
+
+const ProfileCard: React.FC<ProfileCardProps> = ({ data }) => {
     const [imgLoaded, setImgLoaded] = useState(false);
 
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const baseUrl = import.meta.env.VITE_API_URL;
-                if (!baseUrl) {
-                    console.error("DIQQAT: VITE_API_URL topilmadi! Vercel Settings-ni tekshiring.");
-                }
-                const response = await axios.get(`${baseUrl}/profile/`);
-                setProfile(Array.isArray(response.data) ? response.data[0] : response.data);
-            } catch (error) {
-                console.error("Profil yuklashda xato:", error);
-            }
-        };
-        fetchProfile();
-    }, []);
+    // Backend hostini rasmlar uchun aniqlaymiz (agar rasm relative path bo'lsa)
+    const API_BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://127.0.0.1:8000';
 
-    // Skeleton Screen (Ma'lumot kelguncha ko'rinadi)
-    if (!profile) {
+    const getImageUrl = (url: string) => {
+        if (!url) return '';
+        if (url.startsWith('http')) return url;
+        return `${API_BASE_URL}${url}`;
+    };
+
+    // Ma'lumot kelguncha Skeleton Screen ko'rsatiladi
+    if (!data) {
         return (
-            <div className="profile-main skeleton-wrapper p-4">
-                <div className="skeleton skeleton-img mb-4"></div>
-                <div className="skeleton skeleton-title mb-2"></div>
-                <div className="skeleton skeleton-text mb-4"></div>
-                <div className="skeleton skeleton-btn"></div>
+            <div className="profile-main skeleton-wrapper p-4 h-100 bento-card">
+                <div className="skeleton skeleton-img mb-4" style={{ height: '250px', borderRadius: '16px' }}></div>
+                <div className="skeleton skeleton-title mb-2" style={{ height: '30px', width: '70%' }}></div>
+                <div className="skeleton skeleton-text mb-4" style={{ height: '60px' }}></div>
+                <div className="skeleton skeleton-btn mb-2" style={{ height: '40px' }}></div>
+                <div className="skeleton skeleton-btn" style={{ height: '40px' }}></div>
             </div>
         );
     }
@@ -50,19 +47,20 @@ const ProfileCard: React.FC = () => {
         <div className="bento-card profile-main p-4 text-center text-lg-start h-100" data-aos="fade-up">
             <div className={`img-wrapper mb-4 overflow-hidden rounded-4 shadow-sm ${!imgLoaded ? 'img-skeleton' : ''}`}>
                 <img
-                    src={profile.image}
-                    alt={profile.full_name}
+                    src={getImageUrl(data.image)}
+                    alt={data.full_name}
                     className={`img-fluid profile-img ${imgLoaded ? 'loaded' : 'loading'}`}
                     onLoad={() => setImgLoaded(true)}
                     loading="lazy"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x300?text=Profile'; }}
                 />
             </div>
 
             <div className="profile-info">
-                <h2 className="fw-bold h4">{profile.full_name}</h2>
-                <p
-                    className="text-muted small"
-                    dangerouslySetInnerHTML={{ __html: profile.bio }}
+                <h2 className="fw-bold h4">{data.full_name}</h2>
+                <div
+                    className="text-muted small profile-bio"
+                    dangerouslySetInnerHTML={{ __html: data.bio }}
                 />
             </div>
 
@@ -70,29 +68,29 @@ const ProfileCard: React.FC = () => {
                 <a href="/contact" className="btn btn-primary py-2 rounded-3 fw-semibold shadow-blue">
                     Let's Talk
                 </a>
-                <a href={`mailto:${profile.email}`} className="btn btn-outline-dark py-2 rounded-3 fw-semibold">
+                <a href={`mailto:${data.email}`} className="btn btn-outline-dark py-2 rounded-3 fw-semibold">
                     Send Email
                 </a>
             </div>
 
             <div className="social-links d-flex justify-content-between mt-4">
-                {profile.telegram && (
-                    <a href={profile.telegram} target="_blank" rel="noreferrer" className="social-icon">
+                {data.telegram && (
+                    <a href={data.telegram} target="_blank" rel="noreferrer" className="social-icon">
                         <i className="bi bi-send-fill"></i>
                     </a>
                 )}
-                {profile.instagram && (
-                    <a href={profile.instagram} target="_blank" rel="noreferrer" className="social-icon">
+                {data.instagram && (
+                    <a href={data.instagram} target="_blank" rel="noreferrer" className="social-icon">
                         <i className="bi bi-instagram"></i>
                     </a>
                 )}
-                {profile.github && (
-                    <a href={profile.github} target="_blank" rel="noreferrer" className="social-icon">
+                {data.github && (
+                    <a href={data.github} target="_blank" rel="noreferrer" className="social-icon">
                         <i className="bi bi-github"></i>
                     </a>
                 )}
-                {profile.linkedin && (
-                    <a href={profile.linkedin} target="_blank" rel="noreferrer" className="social-icon">
+                {data.linkedin && (
+                    <a href={data.linkedin} target="_blank" rel="noreferrer" className="social-icon">
                         <i className="bi bi-linkedin"></i>
                     </a>
                 )}

@@ -1,4 +1,3 @@
-/* Variables & Theme */
 $primary-color: #4770ff;
 $primary-dark: #2d48c8;
 $primary-light: #6e8eff;
@@ -25,7 +24,6 @@ $transition-smooth: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 $font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
 
-/* Mixins */
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -33,43 +31,22 @@ $font-mono: 'JetBrains Mono', monospace;
 }
 
 @mixin glass-effect {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-@mixin section-title {
-  font-size: 72px;
-  font-weight: 950;
-  letter-spacing: -4px;
-  line-height: 1;
-  color: $text-main;
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animations */
-@keyframes shine {
-  0% { left: -100%; }
-  20% { left: 100%; }
-  100% { left: 100%; }
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 0 0 rgba($primary-color, 0.2); }
+  70% { box-shadow: 0 0 0 15px rgba($primary-color, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($primary-color, 0); }
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse-soft {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
-}
-
-/* Main Wrapper */
 .portfolio-wrapper {
   padding: 120px 0;
   background: $bg-body;
@@ -79,63 +56,30 @@ $font-mono: 'JetBrains Mono', monospace;
   position: relative;
   overflow-x: hidden;
 
-  &::before {
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 10% 20%, rgba($primary-color, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba($accent-color, 0.03) 0%, transparent 40%);
+    inset: 0;
+    background-image: radial-gradient($border-color 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.3;
+    z-index: 0;
     pointer-events: none;
   }
 
-  /* Loader */
-  .portfolio-loader {
-    min-height: 60vh;
-    @include flex-center;
-    flex-direction: column;
-    gap: 30px;
-
-    .spinner {
-      width: 64px;
-      height: 64px;
-      border: 5px solid $primary-soft;
-      border-top-color: $primary-color;
-      border-radius: 50%;
-      animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    p {
-      font-family: $font-mono;
-      color: $text-secondary;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      animation: pulse-soft 2s infinite;
-    }
-  }
-
-  /* Header Section */
   .projects-header {
     max-width: 1200px;
-    margin: 0 auto 100px auto;
+    margin: 0 auto 100px;
     padding: 0 24px;
     text-align: center;
     position: relative;
     z-index: 2;
 
-    .badge-container {
-      margin-bottom: 24px;
-      @include flex-center;
-    }
-
     .cyber-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 28px;
+      gap: 10px;
+      padding: 10px 24px;
       background: $text-white;
       border: 1px solid $border-color;
       border-radius: 100px;
@@ -145,40 +89,29 @@ $font-mono: 'JetBrains Mono', monospace;
       text-transform: uppercase;
       letter-spacing: 2px;
       box-shadow: $shadow-sm;
-      position: relative;
-      overflow: hidden;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba($primary-color, 0.1), transparent);
-        animation: shine 3s infinite;
-      }
-
-      i { font-size: 18px; }
+      margin-bottom: 25px;
     }
 
     .title {
-      @include section-title;
-      margin: 32px 0;
+      font-size: 80px;
+      font-weight: 950;
+      letter-spacing: -4px;
+      line-height: 0.9;
+      color: $text-main;
+      margin: 0 0 35px;
 
       .highlight {
         color: $primary-color;
         position: relative;
-        display: inline-block;
-
-        &::after {
+        z-index: 1;
+        &::before {
           content: '';
           position: absolute;
-          bottom: 12%;
+          bottom: 10%;
           left: 0;
           width: 100%;
-          height: 12px;
-          background: rgba($primary-color, 0.1);
+          height: 15px;
+          background: $primary-soft;
           z-index: -1;
           border-radius: 10px;
         }
@@ -186,308 +119,320 @@ $font-mono: 'JetBrains Mono', monospace;
     }
 
     .header-intro {
-      font-size: 22px;
+      font-size: 24px;
       color: $text-secondary;
-      max-width: 750px;
+      max-width: 800px;
       margin: 0 auto;
-      line-height: 1.8;
+      line-height: 1.6;
       font-weight: 500;
-      opacity: 0.85;
     }
   }
-}
 
-/* Projects Grid Layout */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); // Qat'iy 2 ustun
-  gap: 48px;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 40px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Bento Card Design */
-.project-bento-card {
-  background: $bg-card;
-  border: 1px solid $border-color;
-  border-radius: $radius-xl;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  transition: $transition-smooth;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  opacity: 1 !important;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: $radius-xl;
-    background: radial-gradient(circle at top right, rgba($primary-color, 0.08), transparent 60%);
-    opacity: 0;
-    transition: $transition-base;
-    z-index: -1;
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
   }
 
-  &:hover {
-    transform: translateY(-20px) scale(1.01);
-    border-color: $border-hover;
-    box-shadow: $shadow-lg;
+  .project-bento-card {
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: $radius-xl;
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    transition: $transition-smooth;
+    height: 100%;
+    position: relative;
 
-    &::before { opacity: 1; }
+    &:hover {
+      transform: translateY(-20px);
+      border-color: $primary-light;
+      box-shadow: $shadow-lg;
+
+      .project-img-wrapper .project-img { transform: scale(1.04); }
+      .overlay-links a { transform: translateY(0); opacity: 1; }
+    }
 
     .project-img-wrapper {
-      .project-img { transform: scale(1.12) rotate(1deg); }
-      .project-overlay { opacity: 1; transform: translateY(0); }
-    }
-
-    h3 { color: $primary-color; transform: translateX(12px); }
-  }
-
-  .project-img-wrapper {
-    position: relative;
-    height: 380px;
-    border-radius: $radius-lg;
-    overflow: hidden;
-    background: #f1f5f9;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-
-    .project-img {
+      position: relative;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 2s cubic-bezier(0.2, 1, 0.3, 1);
-    }
-
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-      @include glass-effect;
-      background: rgba(15, 23, 42, 0.6);
+      height: 280px;
+      border-radius: $radius-lg;
+      overflow: hidden;
+      background: #f1f5f9;
+      margin-bottom: 40px;
       @include flex-center;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: $transition-smooth;
+      border: 1px solid rgba($border-color, 0.8);
 
+      .project-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 20px;
+        transition: $transition-smooth;
+      }
+
+      /* Ikonkalar uchun yangi, doimiy ko'rinadigan joylashuv */
       .overlay-links {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        gap: 24px;
+        flex-direction: row; // Yonma-yon turishi shart
+        gap: 15px;
+        z-index: 10;
 
         a {
-          width: 76px;
-          height: 76px;
+          width: 54px;
+          height: 54px;
           background: $text-white;
-          border-radius: 26px;
+          border-radius: 16px;
           color: $text-main;
           @include flex-center;
-          font-size: 32px;
-          transition: $transition-base;
+          font-size: 22px;
           text-decoration: none;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          border: 1px solid $border-color;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          opacity: 0.9; // Skrinshotda ko'rinishi uchun
 
           &:hover {
             background: $primary-color;
             color: $text-white;
-            transform: scale(1.2) rotate(8deg);
-            box-shadow: 0 20px 40px rgba($primary-color, 0.4);
+            transform: translateY(-8px) scale(1.1);
+            opacity: 1;
+            box-shadow: 0 15px 30px rgba($primary-color, 0.3);
+          }
+
+          i { line-height: 0; } // Ikonka markazda turishi uchun
+        }
+      }
+    }
+
+    .project-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .info-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+
+        .p-cat {
+          font-size: 12px;
+          font-weight: 900;
+          text-transform: uppercase;
+          color: $primary-color;
+          background: $primary-soft;
+          padding: 8px 22px;
+          border-radius: 100px;
+          letter-spacing: 2px;
+        }
+
+        .p-year {
+          font-family: $font-mono;
+          font-size: 16px;
+          font-weight: 800;
+          color: $text-muted;
+        }
+      }
+
+      h3 {
+        font-size: 42px;
+        font-weight: 950;
+        color: $text-main;
+        margin-bottom: 30px;
+        letter-spacing: -2px;
+        line-height: 1;
+      }
+
+      .p-details-box {
+        background: #f8fafc;
+        padding: 35px;
+        border-radius: $radius-lg;
+        border: 1px solid $border-color;
+        margin-bottom: 40px;
+        flex: 1;
+
+        p {
+          font-size: 17px;
+          line-height: 1.8;
+          color: $text-secondary;
+          margin-bottom: 25px;
+          &:last-child { margin-bottom: 0; }
+
+          strong {
+            color: $primary-color;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 10px;
+            font-family: $font-mono;
+          }
+        }
+      }
+
+      .p-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: auto;
+
+        span {
+          font-size: 13px;
+          font-weight: 800;
+          color: $text-main;
+          background: $text-white;
+          padding: 10px 20px;
+          border-radius: 14px;
+          border: 1px solid $border-color;
+          font-family: $font-mono;
+          transition: all 0.3s ease;
+
+          &:hover {
+            border-color: $primary-color;
+            color: $primary-color;
+            transform: translateY(-4px);
+            background: $primary-soft;
           }
         }
       }
     }
   }
+}
 
-  .project-info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+.custom-btn {
+  padding: 16px 36px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 16px;
+  @include flex-center;
+  gap: 12px;
+  transition: $transition-base;
+  cursor: pointer;
+  border: none;
 
-    .info-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
-
-      .p-cat {
-        font-size: 12px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: $primary-color;
-        background: $primary-soft;
-        padding: 10px 24px;
-        border-radius: 100px;
-        border: 1px solid rgba($primary-color, 0.1);
-      }
-
-      .p-year {
-        font-family: $font-mono;
-        font-size: 16px;
-        font-weight: 700;
-        color: $text-muted;
-      }
-    }
-
-    h3 {
-      font-size: 40px;
-      font-weight: 900;
-      color: $text-main;
-      margin-bottom: 32px;
-      letter-spacing: -2px;
-      transition: $transition-base;
-      line-height: 1.1;
-    }
-
-    .p-details-box {
-      background: #fafbfc;
-      padding: 32px;
-      border-radius: $radius-lg;
-      border: 1px solid $border-color;
-      margin-bottom: 40px;
-      flex-grow: 1;
-      transition: $transition-base;
-
-      p {
-        font-size: 17px;
-        line-height: 1.9;
-        color: $text-secondary;
-        margin-bottom: 24px;
-
-        &:last-child { margin-bottom: 0; }
-
-        strong {
-          color: $text-main;
-          font-size: 13px;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          display: block;
-          margin-bottom: 12px;
-          font-weight: 900;
-        }
-      }
-    }
-
-    .p-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: auto;
-
-      span {
-        font-size: 13px;
-        font-weight: 700;
-        color: $text-secondary;
-        background: $text-white;
-        padding: 10px 22px;
-        border-radius: 14px;
-        border: 1px solid $border-color;
-        transition: $transition-base;
-        font-family: $font-mono;
-
-        &:hover {
-          border-color: $primary-color;
-          color: $primary-color;
-          background: rgba($primary-color, 0.02);
-          transform: translateY(-4px);
-        }
-      }
-    }
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 0;
+  &.btn-primary {
     background: $primary-color;
-    transition: $transition-smooth;
-    border-radius: $radius-xl 0 0 $radius-xl;
-  }
-
-  &:hover::after { height: 100%; }
-}
-
-/* Empty State */
-.empty-state {
-  text-align: center;
-  padding: 100px 24px;
-  color: $text-muted;
-  font-size: 20px;
-  font-weight: 500;
-}
-
-/* AOS Styles */
-[data-aos="fade-up"] {
-  opacity: 0;
-  transform: translateY(60px);
-  transition-duration: 1s !important;
-}
-
-[data-aos="fade-up"].aos-animate {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* Responsive Design */
-@media (max-width: 1440px) {
-  .portfolio-wrapper .projects-header .title { font-size: 64px; }
-  .projects-grid { gap: 40px; padding: 0 32px; }
-}
-
-@media (max-width: 1100px) {
-  .projects-grid {
-    grid-template-columns: 1fr; // Planshetda bitta ustun
-    max-width: 800px;
-  }
-  .portfolio-wrapper { padding: 80px 0; }
-  .project-bento-card { padding: 32px; }
-}
-
-@media (max-width: 768px) {
-  .portfolio-wrapper .projects-header {
-    margin-bottom: 60px;
-    .title { font-size: 44px; letter-spacing: -1.5px; }
-    .header-intro { font-size: 18px; }
-  }
-  .project-bento-card {
-    border-radius: $radius-lg;
-    .project-img-wrapper { height: 280px; }
-    .project-info h3 { font-size: 32px; }
-    .p-details-box { padding: 24px; }
+    color: white;
+    box-shadow: 0 10px 20px rgba($primary-color, 0.15);
+    &:hover { background: $primary-dark; transform: translateY(-3px); }
   }
 }
 
-@media (max-width: 480px) {
-  .projects-grid { padding: 0 20px; gap: 32px; }
-  .project-bento-card {
-    padding: 24px;
-    h3 { font-size: 28px; }
-    .project-img-wrapper { height: 220px; }
+.glass-nav {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  @include glass-effect;
+  padding: 12px 40px;
+  border-radius: 100px;
+  display: flex;
+  gap: 35px;
+  box-shadow: $shadow-md;
+
+  a {
+    color: $text-main;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.3s;
+    &:hover { color: $primary-color; }
   }
 }
 
-/* Scrollbar Customization */
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: $bg-body; }
 ::-webkit-scrollbar-thumb {
-  background: $border-color;
-  border-radius: 10px;
+  background: #cbd5e1;
+  border-radius: 100px;
   border: 4px solid $bg-body;
   &:hover { background: $text-muted; }
 }
 
-/* Accessibility & Utils */
+/* Media Queries - Har bir qismga alohida etibor bilan */
+@media (max-width: 1400px) {
+  .portfolio-wrapper .projects-grid { max-width: 1200px; gap: 40px; }
+  .portfolio-wrapper .projects-header .title { font-size: 68px; }
+}
+
+@media (max-width: 1200px) {
+  .portfolio-wrapper .projects-grid { padding: 0 30px; gap: 30px; }
+  .portfolio-wrapper .project-bento-card { padding: 35px; h3 { font-size: 34px; } }
+}
+
+@media (max-width: 1024px) {
+  .portfolio-wrapper .projects-grid { grid-template-columns: 1fr; max-width: 750px; }
+  .portfolio-wrapper .projects-header .title { font-size: 60px; }
+  .portfolio-wrapper .project-bento-card .project-img-wrapper { height: 320px; }
+}
+
+@media (max-width: 768px) {
+  .portfolio-wrapper { padding: 80px 0; }
+  .portfolio-wrapper .projects-header {
+    margin-bottom: 60px;
+    .title { font-size: 48px; letter-spacing: -2px; }
+    .header-intro { font-size: 20px; }
+  }
+  .portfolio-wrapper .project-bento-card {
+    padding: 30px;
+    .project-img-wrapper {
+      height: 280px;
+      margin-bottom: 30px;
+      .overlay-links { opacity: 1; transform: translateX(-50%) translateY(0); } // Mobilda doim ko'rinadi
+    }
+    .project-info h3 { font-size: 30px; margin-bottom: 25px; }
+    .p-details-box { padding: 25px; margin-bottom: 30px; }
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio-wrapper .projects-header .title { font-size: 38px; }
+  .portfolio-wrapper .project-bento-card {
+    padding: 20px;
+    border-radius: 28px;
+    .project-img-wrapper { height: 220px; .overlay-links a { width: 48px; height: 48px; font-size: 18px; } }
+    .project-info h3 { font-size: 26px; }
+    .p-details-box { padding: 20px; p { font-size: 15px; } }
+  }
+  .glass-nav { padding: 10px 25px; gap: 20px; a { font-size: 13px; } }
+}
+
+@media (max-width: 400px) {
+  .portfolio-wrapper .projects-grid { padding: 0 15px; }
+  .portfolio-wrapper .projects-header .title { font-size: 32px; }
+  .portfolio-wrapper .project-bento-card .project-img-wrapper { height: 190px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
 
-.portfolio-wrapper::selection {
-  background: rgba($primary-color, 0.2);
-  color: $primary-dark;
+/* Extra decorative elements for UI/UX */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  animation: glow-pulse 2s infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, $primary-color, $accent-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

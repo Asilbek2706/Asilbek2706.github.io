@@ -2,13 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Footer.scss";
 
-const Footer: React.FC = () => {
+// Profil ma'lumotlari uchun interfeys
+interface ProfileData {
+    full_name: string;
+    telegram?: string;
+    github?: string;
+    // Boshqa kerakli maydonlar
+}
+
+// App.tsx dan keladigan props uchun interfeys (Xatolarni yo'qotadi)
+interface FooterProps {
+    profile: ProfileData | null;
+}
+
+const Footer: React.FC<FooterProps> = ({ profile }) => {
+    // Ismdan faqat birinchisini olish (Asilbek.dev ko'rinishi uchun)
+    const firstName = profile?.full_name ? profile.full_name.split(' ')[0] : 'Asilbek';
+
     return (
         <footer className="footer-custom mt-5 mb-4">
             <div className="footer-container">
                 <div className="footer-section">
                     <Link to="/" className="nav-logo">
-                        Asilbek<span>.dev</span>
+                        {firstName}<span>.dev</span>
                     </Link>
                     <div className="status-pill ms-lg-3">
                         <span className="pulse-dot"></span>
@@ -34,7 +50,7 @@ const Footer: React.FC = () => {
                 <div className="footer-actions">
                     <div className="social-group">
                         <a
-                            href="https://t.me/as1lbek_2706"
+                            href={profile?.telegram || "https://t.me/as1lbek_2706"}
                             className="social-btn"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -42,7 +58,7 @@ const Footer: React.FC = () => {
                             <i className="bi bi-send"></i>
                         </a>
                         <a
-                            href="https://github.com/Asilbek2706"
+                            href={profile?.github || "https://github.com/Asilbek2706"}
                             className="social-btn"
                             target="_blank"
                             rel="noopener noreferrer"
